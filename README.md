@@ -1,7 +1,7 @@
-#SmartWaste API
+# SmartWaste API
 
 [SmartWaste](http://www.smartwaste.co.uk/smarter/) is a recognised way to aggregate environmental data (including waste transactions).
-This PHP library provides a way to read and write data using the API.
+This PHP library provides a way to read and write data using the API, saving manual data entry.
 
 ## Use Cases
 * BRE Customer extracting data to their internal system
@@ -21,7 +21,7 @@ Please obtain these credentials by speaking to BRE.
 $credentials = SmartWaste::token('user', 'publicKey', 'privateKey');
 ```
 
-##Methods available
+## Methods available
 Methods can be called from SmartWasteAPI::METHOD or SmartWaste::api($credentials, METHOD, $params)
 
     assignSubcontractorToProject
