@@ -1,0 +1,157 @@
+
+[
+    {
+        "wasteID": 1756110,
+        "dateEntered": "16/1/2017",
+        "wasteCarrier": {
+            "carrierID": 90153,
+            "carrierName": "Sample Carrier 1"
+        },
+        "wasteDestination": {
+            "destinationID": 90155,
+            "destinationName": "Sample Destination 1"
+        },
+        "subcontractor": {
+            "subcontractorID": 0,
+            "subcontractorName": ""
+        },
+        "wasteTransferNote": "z",
+        "containerReference": "",
+        "skipSize": {
+            "description": "23,500 cu metre stockpile",
+            "skipSizeID": 182,
+            "volume": 0
+        },
+        "voidPercentage": 40,
+        "numberOfContainers": 1,
+        "overallTonnage": 28200,
+        "sicCode": "",
+        "projectPhase": {
+            "projectPhaseID": 3,
+            "projectPhaseName": "Construction"
+        },
+        "wasteManagementRoute": {
+            "wasteManagementRouteID": 3,
+            "wasteManagementRouteName": "Recovery"
+        },
+        "wasteManagementLocation": {
+            "wasteManagementLocationID": 2,
+            "wasteManagementLocationName": "Offsite"
+        },
+        "containerSegregated": false,
+        "createdByCompanyName": "",
+        "wasteTransferNoteEvidence": " http://api.smartwaste.co.uk/swmp/weighbridgetickets/1756110_evidence_1.pdf",
+        "links": [
+            {
+                "rel": "self",
+                "type": "GET",
+                "uri": "http://api.smartwaste.co.uk/9518/projects/3596878/waste-items//1756110"
+            }
+        ],
+        "wasteProducts": [
+            {
+                "wasteProductID": 1,
+                "description": "Bricks  (17 01 02)",
+                "ewcCode": "17 01 02",
+                "percentage": 100
+            }
+        ],
+        "labels": [
+	        {
+	            "labelID": 7,
+	            "labelName": "QA",
+	            "description": "QA",
+	            "labelColour": "label-orange"
+	        },
+	        {
+	            "labelID": 5,
+	            "labelName": "incomplete",
+	            "description": "incomplete",
+	            "labelColour": "label-lime"
+	        },
+	        {
+	            "labelID": 2,
+	            "labelName": "View comments from QA",
+	            "description": "View comments from QA",
+	            "labelColour": "label-orange"
+	        }
+	    ]
+    },
+    {
+        "wasteID": 1755931,
+        "dateEntered": "13/10/2016",
+        "wasteCarrier": {
+            "carrierID": 90156,
+            "carrierName": "Sample Carrier 2"
+        },
+        "wasteDestination": {
+            "destinationID": 90157,
+            "destinationName": "Sample Destination 2"
+        },
+        "subcontractor": {
+            "subcontractorID": 0,
+            "subcontractorName": ""
+        },
+        "wasteTransferNote": "z",
+        "containerReference": "",
+        "skipSize": {
+            "description": "23,500 cu metre stockpile",
+            "skipSizeID": 182,
+            "volume": 0
+        },
+        "voidPercentage": 40,
+        "numberOfContainers": 1,
+        "overallTonnage": 5405,
+        "sicCode": "",
+        "projectPhase": {
+            "projectPhaseID": 3,
+            "projectPhaseName": "Construction"
+        },
+        "wasteManagementRoute": {
+            "wasteManagementRouteID": 3,
+            "wasteManagementRouteName": "Recovery"
+        },
+        "wasteManagementLocation": {
+            "wasteManagementLocationID": 2,
+            "wasteManagementLocationName": "Offsite"
+        },
+        "containerSegregated": false,
+        "createdByCompanyName": "",
+        "wasteTransferNoteEvidence": " http://api.smartwaste.co.uk/swmp/weighbridgetickets/1756110_evidence_2.pdf",
+        "links": [
+            {
+                "rel": "self",
+                "type": "GET",
+                "uri": "http://api.smartwaste.co.uk/9518/projects/3596878/waste-items//1755931"
+            }
+        ],
+        "wasteProducts": [
+            {
+                "wasteProductID": 1,
+                "description": "Bricks  (17 01 02)",
+                "ewcCode": "17 01 02",
+                "percentage": 100
+            }
+        ],
+        "labels": [
+	        {
+	            "labelID": 6,
+	            "labelName": "Testing",
+	            "description": "Testing",
+	            "labelColour": "label-orange"
+	        },
+	        {
+	            "labelID": 44,
+	            "labelName": "incomplete",
+	            "description": "incomplete",
+	            "labelColour": "label-lime"
+	        },
+	        {
+	            "labelID": 41,
+	            "labelName": "View comments from QA",
+	            "description": "View comments from QA",
+	            "labelColour": "label-orange"
+	        }
+	    ]
+    }
+]

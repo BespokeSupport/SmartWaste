@@ -1,0 +1,17 @@
+
+[
+    {
+        "address1": "Bucknalls Lane",
+        "address2": "Building Research Establishment",
+        "address3": "",
+        "contactName": "Contact Name ",
+        "county": "",
+        "email": "test@bre.co.uk",
+        "originCompany": 9518,
+        "originCompanyName": "SMARTWaste Training Account",
+        "postcode": "WD25 9XX",
+        "subcontractorID": 30360,
+        "subcontractorName": "Sample subcontractor",
+        "tel": "01923664343"
+    }
+]

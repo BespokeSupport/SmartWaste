@@ -1,0 +1,55 @@
+
+[
+     {
+        "address1": "10",
+        "address2": "Bucknalls Lane",
+        "carrierID": 90524,
+        "carrierName": "Sample waste carrier 1",
+        "county": "Herfordshire",
+        "licences": [
+            {
+                "evidenceFilename": "wmclicence90460_68047_evidence1.txt",
+                "licenceExpiryDate": "31/12/2017",
+                "licenceIssueDate": "1/1/2017",
+                "licenceNumber": "DDF-4533-HD"
+            },
+            {
+                "evidenceFilename": "wmclicence90460_68047_evidence2.txt",
+                "licenceExpiryDate": "31/12/2016",
+                "licenceIssueDate": "1/1/2016",
+                "licenceNumber": "LLDF-4456-DG"
+            }
+        ],
+        "originCompany": 9518,
+        "originCompanyName": "SMARTWaste Training Account",
+        "postcode": "WD259XX",
+        "town": "Watford",
+        "wasteTransferNoteStorage": "On SmartWaste"
+    },
+    {
+        "address1": "10",
+        "address2": "Bucknalls Lane",
+        "carrierID": 90533,
+        "carrierName": "Sample waste carrier 2",
+        "county": "Herfordshire",
+        "licences": [
+            {
+                "evidenceFilename": "",
+                "licenceExpiryDate": "31/12/2017",
+                "licenceIssueDate": "1/1/2017",
+                "licenceNumber": "DDF-4533-HD"
+            },
+            {
+                "evidenceFilename": "",
+                "licenceExpiryDate": "31/12/2016",
+                "licenceIssueDate": "1/1/2016",
+                "licenceNumber": "LLDF-4456-DG"
+            }
+        ],
+        "originCompany": 9518,
+        "originCompanyName": "SMARTWaste Training Account",
+        "postcode": "WD259XX",
+        "town": "Watford",
+        "wasteTransferNoteStorage": "On SmartWaste"
+    }
+]

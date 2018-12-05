@@ -1,0 +1,112 @@
+
+{
+    "wasteID": 1756010,
+    "dateEntered": "24/9/2018",
+    "wasteCarrier": {
+		"address1": "",
+		"address2": "",
+		"carrierID": 79002,
+		"carrierName": "Carrier 1",
+		"county": "",
+		"originCompany": 9518,
+		"originCompanyName": "SMARTWaste Training Account",
+		"postcode": "",
+		"town": "",
+		"wasteTransferNoteStorage": ""
+	},
+	"wasteDestination": {
+		"address1": "",
+		"address2": "",
+		"county": "",
+		"destinationID": 37953,
+		"destinationName": "Destination 1",
+		"originCompany": 9518,
+		"originCompanyName": "SMARTWaste Training Account",
+		"parentCarrierID": 37952,
+		"postcode": "",
+		"town": ""
+	},
+	"projectTransport": {
+		"projectTransportID": 52699,
+		"totalDistanceKms": 402.34,
+		"totalDistanceMiles": 250,
+		"modeOfTransport": {
+			"modeName": "Rail",
+			"modeID": 2
+		},
+		"vehicleType": {
+			"vehicleTypeName": "Rail - International rail",
+			"vehicleTypeID": 28
+		},
+		"fuelType": {
+			"fuelTypeName": "",
+			"fuelTypeID": 0
+		},
+		"fuelAmountInLitre": 0
+	},
+	"subcontractor": {
+		"address1": "",
+		"address2": "",
+		"address3": "",
+		"contactName": "Sample contact name",
+		"county": "",
+		"email": "test@bre.co.uk",
+		"originCompany": 9518,
+		"originCompanyName": "SMARTWaste Training Account",
+		"postcode": "",
+		"subcontractorID": 29838,
+		"subcontractorName": "Sample subcontractor",
+		"tel": ""
+	},
+    "wasteTransferNote": "WTN 24/09/2018",
+    "containerReference": "",
+    "skipSize": {
+        "description": "26.8cu metre skip (35 cu yd)",
+        "skipSizeID": 24,
+        "volume": 0
+    },
+    "voidPercentage": 0,
+    "numberOfContainers": 2,
+    "overallTonnage": 2.7,
+    "sicCode": "324234",
+    "workPackage": {
+        "description": "Groundworks & excavation",
+        "workPackageID": 11
+    },
+    "projectPhase": {
+        "projectPhaseID": 5,
+        "projectPhaseName": "Modular"
+    },
+    "wasteManagementRoute": {
+        "wasteManagementRouteID": 2,
+        "wasteManagementRouteName": "Direct recycle"
+    },
+    "wasteManagementLocation": {
+        "wasteManagementLocationID": 2,
+        "wasteManagementLocationName": "Offsite"
+    },
+    "containerSegregated": false,
+    "createdByCompanyName": "Test Alias 1",
+    "wasteTransferNoteEvidence": "http://api.smartwaste.co.uk/v1/swmp/weighbridgetickets/1756010_evidence1.txt",
+    "links": [
+        {
+            "rel": "self",
+            "type": "GET",
+            "uri": "http://api.smartwaste.co.uk/v1/9518/projects/3487653/waste-items/1756010"
+        }
+    ],
+    "wasteProducts": [
+        {
+            "wasteProductID": 1,
+            "description": "Bricks  (17 01 02)",
+            "ewcCode": "17 01 02",
+            "tonnage": 1.2
+        },
+        {
+            "wasteProductID": 3,
+            "description": "Concrete  (17 01 01)",
+            "ewcCode": "17 01 01",
+            "tonnage": 1.5
+        }
+    ]
+}

@@ -1,0 +1,226 @@
+
+[
+    {
+        "modeName": "Road",
+        "modeID": 1,
+        "vehicleTypes": [
+            {
+                "vehicleTypeName": "Bus - Average Local",
+                "vehicleTypeID": 13,
+                "fuelTypes": []
+            },
+            {
+                "vehicleTypeName": "Bus - Coach",
+                "vehicleTypeID": 14,
+                "fuelTypes": []
+            },
+            {
+                "vehicleTypeName": "Car - Average",
+                "vehicleTypeID": 4,
+                "fuelTypes": [
+                    {
+                        "fuelTypeName": "Diesel",
+                        "fuelTypeID": 1
+                    },
+                    {
+                        "fuelTypeName": "Petrol",
+                        "fuelTypeID": 2
+                    },
+                    {
+                        "fuelTypeName": "Hybrid",
+                        "fuelTypeID": 3
+                    },
+                    {
+                        "fuelTypeName": "LPG",
+                        "fuelTypeID": 4
+                    },
+                    {
+                        "fuelTypeName": "unknown",
+                        "fuelTypeID": 5
+                    }
+                ]
+            },
+            {
+                "vehicleTypeName": "HGV - All artics",
+                "vehicleTypeID": 25,
+                "fuelTypes": []
+            },
+            {
+                "vehicleTypeName": "HGV - All HGV",
+                "vehicleTypeID": 26,
+                "fuelTypes": []
+            },
+            {
+                "vehicleTypeName": "HGV - All rigids",
+                "vehicleTypeID": 22,
+                "fuelTypes": []
+            },
+            {
+                "vehicleTypeName": "HGV - Articulated (>33 tonnes)",
+                "vehicleTypeID": 24,
+                "fuelTypes": []
+            },
+            {
+                "vehicleTypeName": "HGV - Articulated (3.5 - 33 tonnes)",
+                "vehicleTypeID": 23,
+                "fuelTypes": []
+            },
+            {
+                "vehicleTypeName": "HGV - Rigid (>17 tonnes)",
+                "vehicleTypeID": 21,
+                "fuelTypes": []
+            },
+            {
+                "vehicleTypeName": "HGV - Rigid (3.5 - 7.5 tonnes)",
+                "vehicleTypeID": 19,
+                "fuelTypes": []
+            },
+            {
+                "vehicleTypeName": "HGV - Rigid (7.5 - 17 tonnes)",
+                "vehicleTypeID": 20,
+                "fuelTypes": []
+            },
+            {
+                "vehicleTypeName": "Motorbike - Average",
+                "vehicleTypeID": 8,
+                "fuelTypes": []
+            },
+            {
+                "vehicleTypeName": "Taxi - Regular",
+                "vehicleTypeID": 9,
+                "fuelTypes": []
+            },
+            {
+                "vehicleTypeName": "Van - Average (up to 3.5 tonnes)",
+                "vehicleTypeID": 18,
+                "fuelTypes": [
+                    {
+                        "fuelTypeName": "Diesel",
+                        "fuelTypeID": 1
+                    },
+                    {
+                        "fuelTypeName": "Petrol",
+                        "fuelTypeID": 2
+                    },
+                    {
+                        "fuelTypeName": "Hybrid",
+                        "fuelTypeID": 3
+                    },
+                    {
+                        "fuelTypeName": "LPG",
+                        "fuelTypeID": 4
+                    },
+                    {
+                        "fuelTypeName": "unknown",
+                        "fuelTypeID": 5
+                    }
+                ]
+            },
+            {
+                "vehicleTypeName": "Van - Class I (up to 1.305 tonnes)",
+                "vehicleTypeID": 15,
+                "fuelTypes": [
+                    {
+                        "fuelTypeName": "Diesel",
+                        "fuelTypeID": 1
+                    },
+                    {
+                        "fuelTypeName": "Petrol",
+                        "fuelTypeID": 2
+                    }
+                ]
+            },
+            {
+                "vehicleTypeName": "Van - Class II (1.305 to 1.74 tonnes)",
+                "vehicleTypeID": 16,
+                "fuelTypes": [
+                    {
+                        "fuelTypeName": "Diesel",
+                        "fuelTypeID": 1
+                    },
+                    {
+                        "fuelTypeName": "Petrol",
+                        "fuelTypeID": 2
+                    }
+                ]
+            },
+            {
+                "vehicleTypeName": "Van - Class III (1.74 to 3.5 tonnes)",
+                "vehicleTypeID": 17,
+                "fuelTypes": [
+                    {
+                        "fuelTypeName": "Diesel",
+                        "fuelTypeID": 1
+                    },
+                    {
+                        "fuelTypeName": "Petrol",
+                        "fuelTypeID": 2
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "modeName": "Rail",
+        "modeID": 2,
+        "vehicleTypes": [
+            {
+                "vehicleTypeName": "Rail - Freight train",
+                "vehicleTypeID": 31,
+                "fuelTypes": []
+            },
+            {
+                "vehicleTypeName": "Rail - International rail",
+                "vehicleTypeID": 28,
+                "fuelTypes": []
+            },
+            {
+                "vehicleTypeName": "Rail - Light rail and tram",
+                "vehicleTypeID": 29,
+                "fuelTypes": []
+            },
+            {
+                "vehicleTypeName": "Rail - London Underground",
+                "vehicleTypeID": 30,
+                "fuelTypes": []
+            },
+            {
+                "vehicleTypeName": "Rail - National rail",
+                "vehicleTypeID": 27,
+                "fuelTypes": []
+            }
+        ]
+    },
+    {
+        "modeName": "Air",
+        "modeID": 3,
+        "vehicleTypes": [
+            {
+                "vehicleTypeName": "Flights - Domestic (UK)",
+                "vehicleTypeID": 32,
+                "fuelTypes": []
+            },
+            {
+                "vehicleTypeName": "Flights - Long-haul (non-European)",
+                "vehicleTypeID": 34,
+                "fuelTypes": []
+            },
+            {
+                "vehicleTypeName": "Flights - Short-haul (Europe)",
+                "vehicleTypeID": 33,
+                "fuelTypes": []
+            }
+        ]
+    },
+    {
+        "modeName": "Water",
+        "modeID": 4,
+        "vehicleTypes": [
+            {
+                "vehicleTypeName": "Water - Cargo",
+                "vehicleTypeID": 35,
+                "fuelTypes": []
+            }
+        ]
+    }
+]

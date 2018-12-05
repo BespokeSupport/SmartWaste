@@ -1,0 +1,11 @@
+
+[
+    {
+        "wasteManagementLocationID": 1,
+        "wasteManagementLocationName": "On site"
+    },
+    {
+        "wasteManagementLocationID": 2,
+        "wasteManagementLocationName": "Offsite"
+    }
+]

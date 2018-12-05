@@ -1,0 +1,23 @@
+{
+  "minimum-stability": "RC",
+  "autoload": {
+    "psr-4": {
+      "BespokeSupport\\SmartWaste\\":"src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "BespokeSupport\\SmartWasteTests\\":"tests"
+    }
+  },
+  "require": {
+    "php": "^7.1",
+    "ext-json": "*",
+    "guzzlehttp/guzzle": "@stable",
+    "symfony/console": "^4.2@RC"
+  },
+  "require-dev": {
+    "php": "^7.1",
+    "symfony/var-exporter": "^4.2@RC"
+  }
+}

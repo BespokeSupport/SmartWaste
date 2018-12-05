@@ -1,0 +1,19 @@
+
+[
+    {
+        "projectPhaseID": 3,
+        "projectPhaseName": "Construction"
+    },
+    {
+        "projectPhaseID": 1,
+        "projectPhaseName": "Demolition"
+    },
+    {
+        "projectPhaseID": 2,
+        "projectPhaseName": "Excavation"
+    },
+    {
+        "projectPhaseID": 4,
+        "projectPhaseName": "Office and Welfare Waste"
+    }
+]

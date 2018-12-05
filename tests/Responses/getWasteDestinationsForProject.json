@@ -1,0 +1,55 @@
+
+[
+     {
+        "address1": "10",
+        "address2": "Bucknalls Lane",
+        "county": "Herts",
+        "destinationID": 90464,
+        "destinationName": "Sample destination 1",
+        "licences": [
+            {
+                "evidenceFilename": "wmclicence90464_68053_evidence1.txt",
+                "licenceExpiryDate": "31/12/2019",
+                "licenceIssueDate": "1/1/2017",
+                "licenceNumber": "DDF-4533-HD"
+            },
+            {
+                "evidenceFilename": "wmclicence90464_68054_evidence2.txt",
+                "licenceExpiryDate": "31/12/2019",
+                "licenceIssueDate": "1/1/2016",
+                "licenceNumber": "WER-234-DST"
+            }
+        ],
+        "originCompany": 9518,
+        "originCompanyName": "SMARTWaste Training Account",
+        "parentCarrierID": 90418,
+        "postcode": "WD259XX",
+        "town": "Watford"
+    },
+    {
+        "address1": "10",
+        "address2": "Bucknalls Lane",
+        "county": "Herts",
+        "destinationID": 90473,
+        "destinationName": "Sample destination 2",
+        "licences": [
+            {
+                "evidenceFilename": "",
+                "licenceExpiryDate": "31/12/2019",
+                "licenceIssueDate": "1/1/2017",
+                "licenceNumber": "DDF-4533-HD"
+            },
+            {
+                "evidenceFilename": "",
+                "licenceExpiryDate": "31/12/2019",
+                "licenceIssueDate": "1/1/2016",
+                "licenceNumber": "WER-234-DST"
+            }
+        ],
+        "originCompany": 9518,
+        "originCompanyName": "SMARTWaste Training Account",
+        "parentCarrierID": 90418,
+        "postcode": "WD259XX",
+        "town": "Watford"
+    }
+]

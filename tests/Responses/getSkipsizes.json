@@ -1,0 +1,23 @@
+
+[
+    {
+        "description": "3.75 litre container",
+        "skipSizeID": 172,
+        "volume": 0.00375
+    },
+    {
+        "description": "5 litre container",
+        "skipSizeID": 168,
+        "volume": 0.005
+    },
+    {
+        "description": "10 litre container",
+        "skipSizeID": 174,
+        "volume": 0.01
+    },
+    {
+        "description": "12.5 litre container",
+        "skipSizeID": 173,
+        "volume": 0.0125
+    }
+]

@@ -1,0 +1,2275 @@
+ [
+  {
+    "type": "get",
+    "url": "/authenticate/:clientKey",
+    "title": "authenticate",
+    "group": "Authentication",
+    "description": "<p>Authenticate the client</p>",
+    "name": "authenticate",
+    "version": "1.0.0",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "clientKey",
+            "description": "<p>The clients public key</p>"
+          }
+        ],
+        "query string": [
+          {
+            "group": "query string",
+            "type": "String",
+            "optional": false,
+            "field": "token",
+            "description": "<p>A random string of chars</p>"
+          },
+          {
+            "group": "query string",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>MD5 hash of token + clients private key</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "http://api.smartwaste.co.uk/v1/authenticate/bre.json?token=98845567ddf&password=3dc67392a4e2d695c21bd31d5db0b09a"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Indicates if the authentication was successful</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>If the request is successful you will receive an authToken that should be sent with all requests that require client authentication. This can be sent as either an additional parameter or be included in the request header</p>"
+          }
+        ]
+      }
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/AuthenticationResource.java",
+    "groupTitle": "Authentication",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "/users/:username",
+    "title": "authenticateUser",
+    "group": "Authentication",
+    "description": "<p>Check if the SmartWaste user has allowed the API client to access their account via the API.</p>",
+    "name": "authenticateUser",
+    "version": "1.0.0",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>The username of the user account that is being authenticated. This is a path parameter - see the example below.</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "boolean",
+            "optional": false,
+            "field": "success",
+            "description": "<p>Indicates whether this user has already been authorised or not.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "User",
+            "optional": false,
+            "field": "user",
+            "description": "<p>If already authorised, you will receive the details of this user.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "authenticationUrl",
+            "description": "<p>If the user has not yet authorised access, you will receive this URL. This URL redirects to a page where the user can allow this API client to access their SmartWaste account.</p>"
+          }
+        ]
+      }
+    },
+    "sampleRequest": [
+      {
+        "url": "http://api.smartwaste.co.uk/v1/users/john.smith?authToken=pSb8ImT4Cpywf3K1xUm5ogEzxsatisHv5DXFOfazsU8UTIJexBVNE4UwBuXiSYtx"
+      }
+    ],
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/AuthenticationResource.java",
+    "groupTitle": "Authentication",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "{cid}/companies",
+    "title": "getCompanies",
+    "group": "Companies",
+    "description": "<p>Get the list of companies which exist under the company which is identified by {cid}</p>",
+    "name": "getCompanies",
+    "version": "1.0.0",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Company",
+            "optional": false,
+            "field": "results.Companies",
+            "description": "<p>This contains the details of the companies retrieved.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n[\n    {\n        \"address1\": \"11 Industrial Park\",\n        \"address2\": \"\",\n        \"city\": \"London\",\n        \"companyID\": 17134,\n        \"companyName\": \"London Region\",\n        \"companySize\": \"0-9 employees\",\n        \"companyType\": \"Architect\",\n        \"contactFirstname\": \"John\",\n        \"contactSurname\": \"Smith\",\n        \"county\": \"Greater London\",\n        \"email\": \"john.smith@company.co.uk\",\n        \"phone\": \"\",\n        \"postCode\": \"SE12HD\",\n        \"web\": \"www.company.co.uk/london\"\n    },\n    {\n        \"address1\": \"4 High Street\",\n        \"address2\": \"\",\n        \"city\": \"Cambridge\",\n        \"companyID\": 17135,\n        \"companyName\": \"South East Region\",\n        \"companySize\": \"0-9 employees\",\n        \"companyType\": \"Architect\",\n        \"contactFirstname\": \"Adam\",\n        \"contactSurname\": \"Smith\",\n        \"county\": \"Cambridgeshire\",\n        \"email\": \"adam.smith@company.co.uk\",\n        \"phone\": \"\",\n        \"postCode\": \"CB13DS\",\n        \"web\": \"www.company.co.uk/southeast\"\n    }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/CompanyResource.java",
+    "groupTitle": "Companies",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "/companies",
+    "title": "getDefaultCompanies",
+    "group": "Companies",
+    "description": "<p>Get the details of the default company/companies which the user has access to. This is the first call the API user needs to make to get the Company IDs needed to use the API.</p>",
+    "name": "getDefaultCompanies",
+    "version": "1.0.0",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Company",
+            "optional": false,
+            "field": "results.Companies",
+            "description": "<p>This contains the details of the companies retrieved.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n[\n    {\n        \"address1\": \"1 Riverside \",\n        \"address2\": \"\",\n        \"city\": \"Watford\",\n        \"companyID\": 9518,\n        \"companyName\": \"SMARTWaste Training Account\",\n        \"companySize\": \"10-49 employees\",\n        \"companyType\": \"Quantity Surveyor\",\n        \"contactFirstname\": \"smartER\",\n        \"contactSurname\": \"Admin\",\n        \"county\": \"Hertfordshire\",\n        \"email\": \"smartwaste@bre.co.uk\",\n        \"phone\": \"01923 664471\",\n        \"postCode\": \"SW1 1SW\",\n        \"web\": \"www.smartwaste.co.uk\"\n    }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/CompanyResource.java",
+    "groupTitle": "Companies",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "post",
+    "url": "{cid}/projects/{pid}/subcontractors/{subcontractorID}",
+    "title": "assignSubcontractorToProject",
+    "group": "Contractors",
+    "description": "<p>Assign subcontractor {subcontractorID} to project {pid} and to it's business unit if necessary</p>",
+    "name": "assignSubcontractorToProject",
+    "version": "1.3.0",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Response",
+            "optional": false,
+            "field": "response",
+            "description": "<p>that indicates whether the assigning process was successful or not</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n[\n   {\n\t    \"success\": true\n   }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/ContractorResource.java",
+    "groupTitle": "Contractors",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "post",
+    "url": "{cid}/projects/{pid}/waste-carriers/{carrierID}",
+    "title": "assignWasteCarrierToProject",
+    "group": "Contractors",
+    "description": "<p>Assign waste carrier {carrierID} to project {pid} and to it's business unit if necessary</p>",
+    "name": "assignWasteCarrierToProject",
+    "version": "1.3.0",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Response",
+            "optional": false,
+            "field": "response",
+            "description": "<p>that indicates whether the assigning process was successful or not</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n[\n   {\n\t    \"success\": true\n   }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/ContractorResource.java",
+    "groupTitle": "Contractors",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "post",
+    "url": "{cid}/projects/{pid}/waste-destinations/{destinationID}",
+    "title": "assignWasteDestinationToProject",
+    "group": "Contractors",
+    "description": "<p>Assign destination {destinationID} to project {pid} and to it's business unit if necessary</p>",
+    "name": "assignWasteDestinationToProject",
+    "version": "1.3.0",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Response",
+            "optional": false,
+            "field": "response",
+            "description": "<p>that indicates whether the assigning process was successful or not</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n[\n   {\n\t    \"success\": true\n   }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/ContractorResource.java",
+    "groupTitle": "Contractors",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "{cid}/projects/{pid}/subcontractors",
+    "title": "getSubcontractorsForProject",
+    "group": "Contractors",
+    "description": "<p>Get the list of subcontractors assigned to project {pid} under business unit {cid}</p>",
+    "name": "getSubcontractorsForProject",
+    "version": "1.0.0",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Subcontractor",
+            "optional": false,
+            "field": "results.Subcontractors",
+            "description": "<p>This contains details of the subcontractors assigned to this project.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n[\n    {\n        \"address1\": \"Bucknalls Lane\",\n        \"address2\": \"Building Research Establishment\",\n        \"address3\": \"\",\n        \"contactName\": \"Contact Name \",\n        \"county\": \"\",\n        \"email\": \"test@bre.co.uk\",\n        \"originCompany\": 9518,\n        \"originCompanyName\": \"SMARTWaste Training Account\",\n        \"postcode\": \"WD25 9XX\",\n        \"subcontractorID\": 30360,\n        \"subcontractorName\": \"Sample subcontractor\",\n        \"tel\": \"01923664343\"\n    }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/ContractorResource.java",
+    "groupTitle": "Contractors",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "{cid}/projects/{pid}/waste-carriers",
+    "title": "getWasteCarriersForProject",
+    "group": "Contractors",
+    "description": "<p>Get the list of waste carriers assigned to project {pid} under business unit {cid}</p>",
+    "name": "getWasteCarriersForProject",
+    "version": "1.0.0",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "WasteCarrier",
+            "optional": false,
+            "field": "results.WasteCarriers",
+            "description": "<p>This contains details of the waste carriers assigned to this project.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n[\n     {\n        \"address1\": \"10\",\n        \"address2\": \"Bucknalls Lane\",\n        \"carrierID\": 90524,\n        \"carrierName\": \"Sample waste carrier 1\",\n        \"county\": \"Herfordshire\",\n        \"licences\": [\n            {\n                \"evidenceFilename\": \"wmclicence90460_68047_evidence1.txt\",\n                \"licenceExpiryDate\": \"31/12/2017\",\n                \"licenceIssueDate\": \"1/1/2017\",\n                \"licenceNumber\": \"DDF-4533-HD\"\n            },\n            {\n                \"evidenceFilename\": \"wmclicence90460_68047_evidence2.txt\",\n                \"licenceExpiryDate\": \"31/12/2016\",\n                \"licenceIssueDate\": \"1/1/2016\",\n                \"licenceNumber\": \"LLDF-4456-DG\"\n            }\n        ],\n        \"originCompany\": 9518,\n        \"originCompanyName\": \"SMARTWaste Training Account\",\n        \"postcode\": \"WD259XX\",\n        \"town\": \"Watford\",\n        \"wasteTransferNoteStorage\": \"On SmartWaste\"\n    },\n    {\n        \"address1\": \"10\",\n        \"address2\": \"Bucknalls Lane\",\n        \"carrierID\": 90533,\n        \"carrierName\": \"Sample waste carrier 2\",\n        \"county\": \"Herfordshire\",\n        \"licences\": [\n            {\n                \"evidenceFilename\": \"\",\n                \"licenceExpiryDate\": \"31/12/2017\",\n                \"licenceIssueDate\": \"1/1/2017\",\n                \"licenceNumber\": \"DDF-4533-HD\"\n            },\n            {\n                \"evidenceFilename\": \"\",\n                \"licenceExpiryDate\": \"31/12/2016\",\n                \"licenceIssueDate\": \"1/1/2016\",\n                \"licenceNumber\": \"LLDF-4456-DG\"\n            }\n        ],\n        \"originCompany\": 9518,\n        \"originCompanyName\": \"SMARTWaste Training Account\",\n        \"postcode\": \"WD259XX\",\n        \"town\": \"Watford\",\n        \"wasteTransferNoteStorage\": \"On SmartWaste\"\n    }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/ContractorResource.java",
+    "groupTitle": "Contractors",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "{cid}/projects/{pid}/waste-destinations",
+    "title": "getWasteDestinationsForProject",
+    "group": "Contractors",
+    "description": "<p>Get the list of waste destinations assigned to project {pid} under business unit {cid}</p>",
+    "name": "getWasteDestinationsForProject",
+    "version": "1.0.0",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "WasteDestination",
+            "optional": false,
+            "field": "results.WasteDestinations",
+            "description": "<p>This contains details of the waste destinations assigned to this project.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n[\n     {\n        \"address1\": \"10\",\n        \"address2\": \"Bucknalls Lane\",\n        \"county\": \"Herts\",\n        \"destinationID\": 90464,\n        \"destinationName\": \"Sample destination 1\",\n        \"licences\": [\n            {\n                \"evidenceFilename\": \"wmclicence90464_68053_evidence1.txt\",\n                \"licenceExpiryDate\": \"31/12/2019\",\n                \"licenceIssueDate\": \"1/1/2017\",\n                \"licenceNumber\": \"DDF-4533-HD\"\n            },\n            {\n                \"evidenceFilename\": \"wmclicence90464_68054_evidence2.txt\",\n                \"licenceExpiryDate\": \"31/12/2019\",\n                \"licenceIssueDate\": \"1/1/2016\",\n                \"licenceNumber\": \"WER-234-DST\"\n            }\n        ],\n        \"originCompany\": 9518,\n        \"originCompanyName\": \"SMARTWaste Training Account\",\n        \"parentCarrierID\": 90418,\n        \"postcode\": \"WD259XX\",\n        \"town\": \"Watford\"\n    },\n    {\n        \"address1\": \"10\",\n        \"address2\": \"Bucknalls Lane\",\n        \"county\": \"Herts\",\n        \"destinationID\": 90473,\n        \"destinationName\": \"Sample destination 2\",\n        \"licences\": [\n            {\n                \"evidenceFilename\": \"\",\n                \"licenceExpiryDate\": \"31/12/2019\",\n                \"licenceIssueDate\": \"1/1/2017\",\n                \"licenceNumber\": \"DDF-4533-HD\"\n            },\n            {\n                \"evidenceFilename\": \"\",\n                \"licenceExpiryDate\": \"31/12/2019\",\n                \"licenceIssueDate\": \"1/1/2016\",\n                \"licenceNumber\": \"WER-234-DST\"\n            }\n        ],\n        \"originCompany\": 9518,\n        \"originCompanyName\": \"SMARTWaste Training Account\",\n        \"parentCarrierID\": 90418,\n        \"postcode\": \"WD259XX\",\n        \"town\": \"Watford\"\n    }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/ContractorResource.java",
+    "groupTitle": "Contractors",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "post",
+    "url": "{cid}/subcontractors",
+    "title": "saveSubcontractorToCompany",
+    "group": "Contractors",
+    "description": "<p>Add subcontractor record under company {cid}</p>",
+    "name": "saveSubcontractorToCompany",
+    "version": "1.3.0",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Subcontractor",
+            "optional": false,
+            "field": "subcontractor",
+            "description": "<p>to be added. All mandatory fields for the subcontractor need to be completed for the record to be successfully saved.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n\t        \"address1\": \"Bucknalls Lane\",\n\t        \"address2\": \"Building Research Establishment\",\n\t        \"address3\": \"\",\n\t        \"contactName\": \"Contact Name \",\n\t        \"county\": \"\",\n\t        \"email\": \"test@bre.co.uk\",\n\t        \"postcode\": \"WD25 9XX\",\n\t        \"subcontractorName\": \"Sample subcontractor\",\n\t        \"tel\": \"01923664343\"\n\t    }",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Subcontractor",
+            "optional": false,
+            "field": "subcontractor",
+            "description": "<p>If successful, the subcontractor saved is returned.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n     \"address1\": \"Bucknalls Lane\",\n     \"address2\": \"Building Research Establishment\",\n     \"address3\": \"\",\n     \"contactName\": \"Contact Name \",\n     \"county\": \"\",\n     \"email\": \"test@bre.co.uk\",\n     \"originCompany\": 9518,\n     \"originCompanyName\": \"SMARTWaste Training Account\",\n     \"postcode\": \"WD25 9XX\",\n     \"subcontractorID\": 30360,\n     \"subcontractorName\": \"Sample subcontractor\",\n     \"tel\": \"01923664343\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/ContractorResource.java",
+    "groupTitle": "Contractors",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "post",
+    "url": "{cid}/projects/{pid}/subcontractors",
+    "title": "saveSubcontractorToProject",
+    "group": "Contractors",
+    "description": "<p>Add subcontractor record under company {cid} and assign it to project {pid}</p>",
+    "name": "saveSubcontractorToProject",
+    "version": "1.3.0",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Subcontractor",
+            "optional": false,
+            "field": "subcontractor",
+            "description": "<p>to be added. All mandatory fields for the subcontractor need to be completed for the record to be successfully saved.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n\t        \"address1\": \"Bucknalls Lane\",\n\t        \"address2\": \"Building Research Establishment\",\n\t        \"address3\": \"\",\n\t        \"contactName\": \"Contact Name \",\n\t        \"county\": \"\",\n\t        \"email\": \"test@bre.co.uk\",\n\t        \"postcode\": \"WD25 9XX\",\n\t        \"subcontractorName\": \"Sample subcontractor\",\n\t        \"tel\": \"01923664343\"\n\t    }",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Subcontractor",
+            "optional": false,
+            "field": "subcontractor",
+            "description": "<p>If successful, the subcontractor saved is returned.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n     \"address1\": \"Bucknalls Lane\",\n     \"address2\": \"Building Research Establishment\",\n     \"address3\": \"\",\n     \"contactName\": \"Contact Name \",\n     \"county\": \"\",\n     \"email\": \"test@bre.co.uk\",\n     \"originCompany\": 9518,\n     \"originCompanyName\": \"SMARTWaste Training Account\",\n     \"postcode\": \"WD25 9XX\",\n     \"subcontractorID\": 30360,\n     \"subcontractorName\": \"Sample subcontractor\",\n     \"tel\": \"01923664343\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/ContractorResource.java",
+    "groupTitle": "Contractors",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "post",
+    "url": "{cid}/waste-carriers",
+    "title": "saveWasteCarrierToCompany",
+    "group": "Contractors",
+    "description": "<p>Add waste carrier record including licences and evidence files associated with licences under the company {cid}</p>",
+    "name": "saveWasteCarrierToCompany",
+    "version": "1.3.0",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "File",
+            "optional": true,
+            "field": "file",
+            "description": "<p>The evidence file(s) for the waste carrier licences to be uploaded.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "WasteCarrier",
+            "optional": false,
+            "field": "wasteCarrier",
+            "description": "<p>Waste carrier to be added. All mandatory fields for the waste carrier need to be completed for the record to be successfully saved.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "\t{\n        \"address1\": \"10\",\n        \"address2\": \"Bucknalls Lane\",\n        \"carrierName\": \"Sample waste carrier 1\",\n        \"county\": \"Herfordshire\",\n        \"licences\": [\n            {\n                \"evidenceFilename\": \"evidence1.txt\",\n                \"licenceExpiryDate\": \"31/12/2017\",\n                \"licenceIssueDate\": \"1/1/2017\",\n                \"licenceNumber\": \"DDF-4533-HD\"\n            },\n            {\n                \"evidenceFilename\": \"evidence2.txt\",\n                \"licenceExpiryDate\": \"31/12/2016\",\n                \"licenceIssueDate\": \"1/1/2016\",\n                \"licenceNumber\": \"LLDF-4456-DG\"\n            }\n        ],\n        \"postcode\": \"WD259XX\",\n        \"town\": \"Watford\",\n        \"wasteTransferNoteStorage\": \"On SmartWaste\"\n    }",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "WasteCarrier",
+            "optional": false,
+            "field": "wasteCarrier",
+            "description": "<p>If successful, the waste carrier record and the associated licence(s) is saved and returned.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n     \"address1\": \"10\",\n     \"address2\": \"Bucknalls Lane\",\n     \"carrierID\": 90524,\n     \"carrierName\": \"Sample waste carrier 1\",\n     \"county\": \"Herfordshire\",\n     \"licences\": [\n         {\n             \"evidenceFilename\": \"wmclicence90460_68047_evidence1.txt\",\n             \"licenceExpiryDate\": \"31/12/2017\",\n             \"licenceIssueDate\": \"1/1/2017\",\n             \"licenceNumber\": \"DDF-4533-HD\"\n         },\n         {\n             \"evidenceFilename\": \"wmclicence90460_68047_evidence2.txt\",\n             \"licenceExpiryDate\": \"31/12/2016\",\n             \"licenceIssueDate\": \"1/1/2016\",\n             \"licenceNumber\": \"LLDF-4456-DG\"\n         }\n     ],\n     \"originCompany\": 9518,\n     \"originCompanyName\": \"SMARTWaste Training Account\",\n     \"postcode\": \"WD259XX\",\n     \"town\": \"Watford\",\n     \"wasteTransferNoteStorage\": \"On SmartWaste\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/ContractorResource.java",
+    "groupTitle": "Contractors",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "post",
+    "url": "{cid}/projects/{pid}/waste-carriers",
+    "title": "saveWasteCarrierToProject",
+    "group": "Contractors",
+    "description": "<p>Add waste carrier record including licences and evidence files associated with licences under the company {cid} and assign it to the project {pid}</p>",
+    "name": "saveWasteCarrierToProject",
+    "version": "1.3.0",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "File",
+            "optional": true,
+            "field": "file",
+            "description": "<p>The evidence file(s) for the waste carrier licences to be uploaded.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "WasteCarrier",
+            "optional": false,
+            "field": "wasteCarrier",
+            "description": "<p>Waste carrier to be added. All mandatory fields for the waste carrier need to be completed for the record to be successfully saved.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "\t{\n        \"address1\": \"10\",\n        \"address2\": \"Bucknalls Lane\",\n        \"carrierName\": \"Sample waste carrier 1\",\n        \"county\": \"Herfordshire\",\n        \"licences\": [\n            {\n                \"evidenceFilename\": \"evidence1.txt\",\n                \"licenceExpiryDate\": \"31/12/2017\",\n                \"licenceIssueDate\": \"1/1/2017\",\n                \"licenceNumber\": \"DDF-4533-HD\"\n            },\n            {\n                \"evidenceFilename\": \"evidence2.txt\",\n                \"licenceExpiryDate\": \"31/12/2016\",\n                \"licenceIssueDate\": \"1/1/2016\",\n                \"licenceNumber\": \"LLDF-4456-DG\"\n            }\n        ],\n        \"postcode\": \"WD259XX\",\n        \"town\": \"Watford\",\n        \"wasteTransferNoteStorage\": \"On SmartWaste\"\n    }",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "WasteCarrier",
+            "optional": false,
+            "field": "wasteCarrier",
+            "description": "<p>If successful, the waste carrier record and the associated licence(s) is saved and returned.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n     \"address1\": \"10\",\n     \"address2\": \"Bucknalls Lane\",\n     \"carrierID\": 90524,\n     \"carrierName\": \"Sample waste carrier 1\",\n     \"county\": \"Herfordshire\",\n     \"licences\": [\n         {\n             \"evidenceFilename\": \"wmclicence90460_68047_evidence1.txt\",\n             \"licenceExpiryDate\": \"31/12/2017\",\n             \"licenceIssueDate\": \"1/1/2017\",\n             \"licenceNumber\": \"DDF-4533-HD\"\n         },\n         {\n             \"evidenceFilename\": \"wmclicence90460_68047_evidence2.txt\",\n             \"licenceExpiryDate\": \"31/12/2016\",\n             \"licenceIssueDate\": \"1/1/2016\",\n             \"licenceNumber\": \"LLDF-4456-DG\"\n         }\n     ],\n     \"originCompany\": 9518,\n     \"originCompanyName\": \"SMARTWaste Training Account\",\n     \"postcode\": \"WD259XX\",\n     \"town\": \"Watford\",\n     \"wasteTransferNoteStorage\": \"On SmartWaste\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/ContractorResource.java",
+    "groupTitle": "Contractors",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "post",
+    "url": "{cid}/waste-destinations",
+    "title": "saveWasteDestinationToCompany",
+    "group": "Contractors",
+    "description": "<p>Add waste destination record including licences and evidence files associated with licences under the company {cid}</p>",
+    "name": "saveWasteDestinationToCompany",
+    "version": "1.3.0",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "File",
+            "optional": true,
+            "field": "file",
+            "description": "<p>The evidence file(s) for the waste destination licences to be uploaded.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "WasteDestination",
+            "optional": false,
+            "field": "wasteDestination",
+            "description": "<p>Waste destination to be added. All mandatory fields for the waste destination need to be completed for the record to be successfully saved.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "\t{\n        \"address1\": \"10\",\n        \"address2\": \"Bucknalls Lane\",\n        \"county\": \"Herts\",\n        \"destinationName\": \"Sample destination 1\",\n        \"licences\": [\n            {\n                \"evidenceFilename\": \"evidence1.txt\",\n                \"licenceExpiryDate\": \"31/12/2019\",\n                \"licenceIssueDate\": \"1/1/2017\",\n                \"licenceNumber\": \"DDF-4533-HD\"\n            },\n            {\n                \"evidenceFilename\": \"evidence2.txt\",\n                \"licenceExpiryDate\": \"31/12/2019\",\n                \"licenceIssueDate\": \"1/1/2016\",\n                \"licenceNumber\": \"WER-234-DST\"\n            }\n        ],\n        \"parentCarrierID\": 90418,\n        \"postcode\": \"WD259XX\",\n        \"town\": \"Watford\"\n    }",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "WasteDestination",
+            "optional": false,
+            "field": "wasteDestination",
+            "description": "<p>If successful, the waste destination record and the associated licence(s) is saved and returned.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n     \"address1\": \"10\",\n     \"address2\": \"Bucknalls Lane\",\n     \"county\": \"Herts\",\n     \"destinationID\": 90464,\n     \"destinationName\": \"Sample destination 1\",\n     \"licences\": [\n         {\n             \"evidenceFilename\": \"wmclicence90464_68053_evidence1.txt\",\n             \"licenceExpiryDate\": \"31/12/2019\",\n             \"licenceIssueDate\": \"1/1/2017\",\n             \"licenceNumber\": \"DDF-4533-HD\"\n         },\n         {\n             \"evidenceFilename\": \"wmclicence90464_68054_evidence2.txt\",\n             \"licenceExpiryDate\": \"31/12/2019\",\n             \"licenceIssueDate\": \"1/1/2016\",\n             \"licenceNumber\": \"WER-234-DST\"\n         }\n     ],\n     \"originCompany\": 9518,\n     \"originCompanyName\": \"SMARTWaste Training Account\",\n     \"parentCarrierID\": 90418,\n     \"postcode\": \"WD259XX\",\n     \"town\": \"Watford\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/ContractorResource.java",
+    "groupTitle": "Contractors",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "post",
+    "url": "{cid}/projects/{pid}/waste-destinations",
+    "title": "saveWasteDestinationToProject",
+    "group": "Contractors",
+    "description": "<p>Add waste destination record including licences and evidence files associated with licences under the company {cid} and assign it to the project {pid}</p>",
+    "name": "saveWasteDestinationToProject",
+    "version": "1.3.0",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "File",
+            "optional": true,
+            "field": "file",
+            "description": "<p>The evidence file(s) for the waste destination licences to be uploaded.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "WasteDestination",
+            "optional": false,
+            "field": "wasteDestination",
+            "description": "<p>Waste destination to be added. All mandatory fields for the waste destination need to be completed for the record to be successfully saved.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "\t{\n        \"address1\": \"10\",\n        \"address2\": \"Bucknalls Lane\",\n        \"county\": \"Herts\",\n        \"destinationName\": \"Sample destination 1\",\n        \"licences\": [\n            {\n                \"evidenceFilename\": \"evidence1.txt\",\n                \"licenceExpiryDate\": \"31/12/2019\",\n                \"licenceIssueDate\": \"1/1/2017\",\n                \"licenceNumber\": \"DDF-4533-HD\"\n            },\n            {\n                \"evidenceFilename\": \"evidence2.txt\",\n                \"licenceExpiryDate\": \"31/12/2019\",\n                \"licenceIssueDate\": \"1/1/2016\",\n                \"licenceNumber\": \"WER-234-DST\"\n            }\n        ],\n        \"parentCarrierID\": 90418,\n        \"postcode\": \"WD259XX\",\n        \"town\": \"Watford\"\n    }",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "WasteDestination",
+            "optional": false,
+            "field": "wasteDestination",
+            "description": "<p>If successful, the waste destination record and the associated licence(s) is saved and returned.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n     \"address1\": \"10\",\n     \"address2\": \"Bucknalls Lane\",\n     \"county\": \"Herts\",\n     \"destinationID\": 90464,\n     \"destinationName\": \"Sample destination 1\",\n     \"licences\": [\n         {\n             \"evidenceFilename\": \"wmclicence90464_68053_evidence1.txt\",\n             \"licenceExpiryDate\": \"31/12/2019\",\n             \"licenceIssueDate\": \"1/1/2017\",\n             \"licenceNumber\": \"DDF-4533-HD\"\n         },\n         {\n             \"evidenceFilename\": \"wmclicence90464_68054_evidence2.txt\",\n             \"licenceExpiryDate\": \"31/12/2019\",\n             \"licenceIssueDate\": \"1/1/2016\",\n             \"licenceNumber\": \"WER-234-DST\"\n         }\n     ],\n     \"originCompany\": 9518,\n     \"originCompanyName\": \"SMARTWaste Training Account\",\n     \"parentCarrierID\": 90418,\n     \"postcode\": \"WD259XX\",\n     \"town\": \"Watford\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/ContractorResource.java",
+    "groupTitle": "Contractors",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "put",
+    "url": "{cid}/projects/{pid}/subcontractors/{subcontractorID}",
+    "title": "updateSubcontractor",
+    "group": "Contractors",
+    "description": "<p>update subcontractor record under company {cid}</p>",
+    "name": "updateSubcontractor",
+    "version": "1.2.0",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Subcontractor",
+            "optional": false,
+            "field": "subcontractor",
+            "description": "<p>to be updated. All mandatory fields for the subcontractor need to be completed for the record to be successfully updated.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n\t        \"address1\": \"Bucknalls Lane\",\n\t        \"address2\": \"Building Research Establishment\",\n\t        \"address3\": \"\",\n\t        \"contactName\": \"Contact Name \",\n\t        \"county\": \"\",\n\t        \"email\": \"test@bre.co.uk\",\n\t        \"postcode\": \"WD25 9XX\",\n\t        \"subcontractorID\": 30360,\n\t        \"subcontractorName\": \"Sample subcontractor\",\n\t        \"tel\": \"01923664343\"\n\t    }",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Subcontractor",
+            "optional": false,
+            "field": "subcontractor",
+            "description": "<p>If successful, the subcontractor saved is returned.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n     \"address1\": \"Bucknalls Lane\",\n     \"address2\": \"Building Research Establishment\",\n     \"address3\": \"\",\n     \"contactName\": \"Contact Name \",\n     \"county\": \"\",\n     \"email\": \"test@bre.co.uk\",\n     \"originCompany\": 9518,\n     \"originCompanyName\": \"SMARTWaste Training Account\",\n     \"postcode\": \"WD25 9XX\",\n     \"subcontractorID\": 30360,\n     \"subcontractorName\": \"Sample subcontractor\",\n     \"tel\": \"01923664343\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/ContractorResource.java",
+    "groupTitle": "Contractors",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "put",
+    "url": "{cid}/projects/{pid}/waste-carriers/{carrierID}",
+    "title": "updateWasteCarrier",
+    "group": "Contractors",
+    "description": "<p>Update waste carrier record including deleting the old licences and saving the new licences and evidence files associated with licences under the company {cid} and assign it to the project {pid}</p>",
+    "name": "updateWasteCarrier",
+    "version": "1.2.0",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "File",
+            "optional": true,
+            "field": "file",
+            "description": "<p>The evidence file(s) for the waste carrier licences to be updated.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "WasteCarrier",
+            "optional": false,
+            "field": "wasteCarrier",
+            "description": "<p>Waste carrier to be updated. All mandatory fields for the waste carrier need to be completed for the record to be successfully updated.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "\t{\n        \"address1\": \"10\",\n        \"address2\": \"Bucknalls Lane\",\n        \"carrierID\": 90524,\n        \"carrierName\": \"Sample waste carrier 1\",\n        \"county\": \"Herfordshire\",\n        \"licences\": [\n            {\n                \"evidenceFilename\": \"evidence1.txt\",\n                \"licenceExpiryDate\": \"31/12/2017\",\n                \"licenceIssueDate\": \"1/1/2017\",\n                \"licenceNumber\": \"DDF-4533-HD\"\n            },\n            {\n                \"evidenceFilename\": \"evidence2.txt\",\n                \"licenceExpiryDate\": \"31/12/2016\",\n                \"licenceIssueDate\": \"1/1/2016\",\n                \"licenceNumber\": \"LLDF-4456-DG\"\n            }\n        ],\n        \"postcode\": \"WD259XX\",\n        \"town\": \"Watford\",\n        \"wasteTransferNoteStorage\": \"On SmartWaste\"\n    }",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "WasteCarrier",
+            "optional": false,
+            "field": "wasteCarrier",
+            "description": "<p>If successful, the waste carrier record and the associated licence(s) is updated and returned.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n     \"address1\": \"10\",\n     \"address2\": \"Bucknalls Lane\",\n     \"carrierID\": 90524,\n     \"carrierName\": \"Sample waste carrier 1\",\n     \"county\": \"Herfordshire\",\n     \"licences\": [\n         {\n             \"evidenceFilename\": \"wmclicence90460_68047_evidence1.txt\",\n             \"licenceExpiryDate\": \"31/12/2017\",\n             \"licenceIssueDate\": \"1/1/2017\",\n             \"licenceNumber\": \"DDF-4533-HD\"\n         },\n         {\n             \"evidenceFilename\": \"wmclicence90460_68047_evidence2.txt\",\n             \"licenceExpiryDate\": \"31/12/2016\",\n             \"licenceIssueDate\": \"1/1/2016\",\n             \"licenceNumber\": \"LLDF-4456-DG\"\n         }\n     ],\n     \"originCompany\": 9518,\n     \"originCompanyName\": \"SMARTWaste Training Account\",\n     \"postcode\": \"WD259XX\",\n     \"town\": \"Watford\",\n     \"wasteTransferNoteStorage\": \"On SmartWaste\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/ContractorResource.java",
+    "groupTitle": "Contractors",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "put",
+    "url": "{cid}/projects/{pid}/waste-destinations/{destinationID}",
+    "title": "updateWasteDestination",
+    "group": "Contractors",
+    "description": "<p>Update waste destination record including deleting old licences and saving the new licences and evidence files associated with licences under the company {cid} and assign it to the project {pid}</p>",
+    "name": "updateWasteDestination",
+    "version": "1.2.0",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "File",
+            "optional": true,
+            "field": "file",
+            "description": "<p>The evidence file(s) for the waste destination licences to be uploaded.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "WasteDestination",
+            "optional": false,
+            "field": "wasteDestination",
+            "description": "<p>Waste destination to be updated. All mandatory fields for the waste destination need to be completed for the record to be successfully saved.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "\t{\n        \"address1\": \"10\",\n        \"address2\": \"Bucknalls Lane\",\n        \"county\": \"Herts\",\n        \"destinationID\": 90464,\n        \"destinationName\": \"Sample destination 1\",\n        \"licences\": [\n            {\n                \"evidenceFilename\": \"evidence1.txt\",\n                \"licenceExpiryDate\": \"31/12/2019\",\n                \"licenceIssueDate\": \"1/1/2017\",\n                \"licenceNumber\": \"DDF-4533-HD\"\n            },\n            {\n                \"evidenceFilename\": \"evidence2.txt\",\n                \"licenceExpiryDate\": \"31/12/2019\",\n                \"licenceIssueDate\": \"1/1/2016\",\n                \"licenceNumber\": \"WER-234-DST\"\n            }\n        ],\n        \"parentCarrierID\": 90418,\n        \"postcode\": \"WD259XX\",\n        \"town\": \"Watford\"\n    }",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "WasteDestination",
+            "optional": false,
+            "field": "wasteDestination",
+            "description": "<p>If successful, the waste destination record and the associated licence(s) is updated and returned.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n     \"address1\": \"10\",\n     \"address2\": \"Bucknalls Lane\",\n     \"county\": \"Herts\",\n     \"destinationID\": 90464,\n     \"destinationName\": \"Sample destination 1\",\n     \"licences\": [\n         {\n             \"evidenceFilename\": \"wmclicence90464_68053_evidence1.txt\",\n             \"licenceExpiryDate\": \"31/12/2019\",\n             \"licenceIssueDate\": \"1/1/2017\",\n             \"licenceNumber\": \"DDF-4533-HD\"\n         },\n         {\n             \"evidenceFilename\": \"wmclicence90464_68054_evidence2.txt\",\n             \"licenceExpiryDate\": \"31/12/2019\",\n             \"licenceIssueDate\": \"1/1/2016\",\n             \"licenceNumber\": \"WER-234-DST\"\n         }\n     ],\n     \"originCompany\": 9518,\n     \"originCompanyName\": \"SMARTWaste Training Account\",\n     \"parentCarrierID\": 90418,\n     \"postcode\": \"WD259XX\",\n     \"town\": \"Watford\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/ContractorResource.java",
+    "groupTitle": "Contractors",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "{cid}/projects/{pid}/labels",
+    "title": "getLabels",
+    "group": "Labels",
+    "description": "<p>Get the list of labels applicable to the project {pid} under business unit {cid}</p>",
+    "name": "getLabels",
+    "version": "1.1.0",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Label",
+            "optional": false,
+            "field": "results.Labels",
+            "description": "<p>This contains details of all Labels applicable to this project.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n[\n\t{\n\t\t\"labelID\": 49,\n\t\t\"labelName\": \"more info needed\",\n\t\t\"description\": \"more info needed\",\n\t\t\"labelColour\": \"label-blue\"\n\t},\n\t{\n\t\t\"labelID\": 2,\n\t\t\"labelName\": \"Approved\",\n\t\t\"description\": \"Approved by admin\",\n\t\t\"labelColour\": \"label-green\"\n\t}\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/LabelResource.java",
+    "groupTitle": "Labels",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "{cid}/projects/{pid}",
+    "title": "getProject",
+    "group": "Projects",
+    "description": "<p>Get details of the project {pid} under business unit {cid}.</p>",
+    "name": "getProject",
+    "version": "1.0.0",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Project",
+            "optional": false,
+            "field": "results.Project",
+            "description": "<p>This contains the details of the project identified by {pid}.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"projectID\": 3738641,\n    \"reference\": \"Sample Project 1\",\n    \"name\": \"Sample Project 1\",\n    \"location\": \"East Anglia\",\n    \"postcode\": \"CB21GD\",\n    \"startDate\": \"1/2/2017\",\n    \"endDate\": \"28/2/2019\",\n    \"projecValue\": 100000,\n    \"descriptionOfSiteLocation\": \"Sample Project 1\",\n    \"floorArea\": 1000,\n    \"totalFloorArea\": 0,\n    \"classification\": \"Commercial Offices\",\n    \"projectUseClass\": \"Institutional\",\n    \"clientType\": \"\",\n    \"contractualAgreement\": \"\",\n    \"projectType\": \"Civil engineering\",\n    \"constructionType\": \"Civil engineering\",\n    \"breeamScheme\": \"Code for Sustainable Homes 2007\",\n    \"smartwasteProjectType\": \"Tonnage\",\n    \"testProject\": false,\n    \"archived\": false,\n    \"siteManager\": \"\",\n    \"projectEnvironmentChampion\": \"\",\n    \"environmentalManager\": \"\",\n    \"dateCreated\": \"6/2/2017\",\n    \"createdByName\": \"SMARTWaste Admin\",\n    \"lastModified\": \"5/10/2017\",\n    \"modifiedByName\": \"SMARTWaste Admin\",\n    \"linkedProject\": false\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/ProjectResource.java",
+    "groupTitle": "Projects",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "{cid}/projects",
+    "title": "getProjects",
+    "group": "Projects",
+    "description": "<p>Get details of all projects which exist under the business unit {cid}</p>",
+    "name": "getProjects",
+    "version": "1.0.0",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Project",
+            "optional": false,
+            "field": "results.Projects",
+            "description": "<p>This contains the details of all the projects retrieved.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n[\n    {\n        \"projectID\": 3738641,\n        \"reference\": \"Sample Project 1\",\n        \"name\": \"Sample Project 1\",\n        \"location\": \"East Anglia\",\n        \"postcode\": \"CB21GD\",\n        \"startDate\": \"1/2/2017\",\n        \"endDate\": \"28/2/2019\",\n        \"projecValue\": 100000,\n        \"descriptionOfSiteLocation\": \"Sample Project 1\",\n        \"floorArea\": 1000,\n        \"totalFloorArea\": 0,\n        \"classification\": \"Commercial Offices\",\n        \"projectUseClass\": \"Institutional\",\n        \"clientType\": \"\",\n        \"contractualAgreement\": \"\",\n        \"projectType\": \"Civil engineering\",\n        \"constructionType\": \"Civil engineering\",\n        \"breeamScheme\": \"Code for Sustainable Homes 2007\",\n        \"smartwasteProjectType\": \"Tonnage\",\n        \"testProject\": false,\n        \"archived\": false,\n        \"siteManager\": \"\",\n        \"projectEnvironmentChampion\": \"\",\n        \"environmentalManager\": \"\",\n        \"dateCreated\": \"6/2/2017\",\n        \"createdByName\": \"SMARTWaste Admin\",\n        \"lastModified\": \"5/10/2017\",\n        \"modifiedByName\": \"SMARTWaste Admin\",\n        \"linkedProject\": false\n    },\n    {\n        \"projectID\": 3736924,\n        \"reference\": \"Sample Project 2\",\n        \"name\": \"Sample Project 2\",\n        \"location\": \"East Anglia\",\n        \"postcode\": \"CB64DH\",\n        \"startDate\": \"1/12/2008\",\n        \"endDate\": \"31/12/2019\",\n        \"projecValue\": 100000,\n        \"descriptionOfSiteLocation\": \"Sample Project 2\",\n        \"floorArea\": 1000,\n        \"totalFloorArea\": 1,\n        \"classification\": \"Civil Engineering\",\n        \"projectUseClass\": \"Railways\",\n        \"clientType\": \"Educational Trust\",\n        \"contractualAgreement\": \"Individual Company\",\n        \"projectType\": \"Demolition and new build\",\n        \"constructionType\": \"Composite\",\n        \"breeamScheme\": \"BREEAM New Construction 2014\",\n        \"smartwasteProjectType\": \"Tonnage\",\n        \"testProject\": false,\n        \"archived\": false,\n        \"siteManager\": \"\",\n        \"projectEnvironmentChampion\": \"\",\n        \"environmentalManager\": \"\",\n        \"dateCreated\": \"5/12/2016\",\n        \"createdByName\": \"SMARTWaste Admin\",\n        \"lastModified\": \"5/10/2017\",\n        \"modifiedByName\": \"SMARTWaste Admin\",\n        \"linkedProject\": false\n    }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/ProjectResource.java",
+    "groupTitle": "Projects",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "{cid}/projects/{pid}/project-phases",
+    "title": "getProjectPhases",
+    "group": "Waste",
+    "description": "<p>Get details of all project phases applicable to a project {pid} under business unit {cid}</p>",
+    "name": "getProjectPhases",
+    "version": "1.0.0",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "ProjectPhases",
+            "optional": false,
+            "field": "results.ProjectPhases",
+            "description": "<p>This contains details of project phases applicable to this project.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n[\n    {\n        \"projectPhaseID\": 3,\n        \"projectPhaseName\": \"Construction\"\n    },\n    {\n        \"projectPhaseID\": 1,\n        \"projectPhaseName\": \"Demolition\"\n    },\n    {\n        \"projectPhaseID\": 2,\n        \"projectPhaseName\": \"Excavation\"\n    },\n    {\n        \"projectPhaseID\": 4,\n        \"projectPhaseName\": \"Office and Welfare Waste\"\n    }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/WasteResource.java",
+    "groupTitle": "Waste",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "{cid}/projects/{pid}/skip-sizes",
+    "title": "getSkipsizes",
+    "group": "Waste",
+    "description": "<p>Get the list of skip sizes applicable to the project {pid} under business unit {cid}</p>",
+    "name": "getSkipsizes",
+    "version": "1.0.0",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "SkipSize",
+            "optional": false,
+            "field": "results.SkipSizes",
+            "description": "<p>This contains details of all skip sizes applicable to this project.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n[\n    {\n        \"description\": \"3.75 litre container\",\n        \"skipSizeID\": 172,\n        \"volume\": 0.00375\n    },\n    {\n        \"description\": \"5 litre container\",\n        \"skipSizeID\": 168,\n        \"volume\": 0.005\n    },\n    {\n        \"description\": \"10 litre container\",\n        \"skipSizeID\": 174,\n        \"volume\": 0.01\n    },\n    {\n        \"description\": \"12.5 litre container\",\n        \"skipSizeID\": 173,\n        \"volume\": 0.0125\n    }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/WasteResource.java",
+    "groupTitle": "Waste",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "{cid}/projects/{pid}/transport-options",
+    "title": "getTransportOptions",
+    "group": "Waste",
+    "description": "<p>Retrieve all valid transport options including modes of transport, vehicle types and fuel types.</p>",
+    "name": "getTransportOptions",
+    "version": "1.0.0",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "ModeOfTransport",
+            "optional": false,
+            "field": "results.ModesOfTransport",
+            "description": "<p>This lists all modes of transport, vehicle types applicable to the modes and fuel types applicable to the vehicle types.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n[\n    {\n        \"modeName\": \"Road\",\n        \"modeID\": 1,\n        \"vehicleTypes\": [\n            {\n                \"vehicleTypeName\": \"Bus - Average Local\",\n                \"vehicleTypeID\": 13,\n                \"fuelTypes\": []\n            },\n            {\n                \"vehicleTypeName\": \"Bus - Coach\",\n                \"vehicleTypeID\": 14,\n                \"fuelTypes\": []\n            },\n            {\n                \"vehicleTypeName\": \"Car - Average\",\n                \"vehicleTypeID\": 4,\n                \"fuelTypes\": [\n                    {\n                        \"fuelTypeName\": \"Diesel\",\n                        \"fuelTypeID\": 1\n                    },\n                    {\n                        \"fuelTypeName\": \"Petrol\",\n                        \"fuelTypeID\": 2\n                    },\n                    {\n                        \"fuelTypeName\": \"Hybrid\",\n                        \"fuelTypeID\": 3\n                    },\n                    {\n                        \"fuelTypeName\": \"LPG\",\n                        \"fuelTypeID\": 4\n                    },\n                    {\n                        \"fuelTypeName\": \"unknown\",\n                        \"fuelTypeID\": 5\n                    }\n                ]\n            },\n            {\n                \"vehicleTypeName\": \"HGV - All artics\",\n                \"vehicleTypeID\": 25,\n                \"fuelTypes\": []\n            },\n            {\n                \"vehicleTypeName\": \"HGV - All HGV\",\n                \"vehicleTypeID\": 26,\n                \"fuelTypes\": []\n            },\n            {\n                \"vehicleTypeName\": \"HGV - All rigids\",\n                \"vehicleTypeID\": 22,\n                \"fuelTypes\": []\n            },\n            {\n                \"vehicleTypeName\": \"HGV - Articulated (>33 tonnes)\",\n                \"vehicleTypeID\": 24,\n                \"fuelTypes\": []\n            },\n            {\n                \"vehicleTypeName\": \"HGV - Articulated (3.5 - 33 tonnes)\",\n                \"vehicleTypeID\": 23,\n                \"fuelTypes\": []\n            },\n            {\n                \"vehicleTypeName\": \"HGV - Rigid (>17 tonnes)\",\n                \"vehicleTypeID\": 21,\n                \"fuelTypes\": []\n            },\n            {\n                \"vehicleTypeName\": \"HGV - Rigid (3.5 - 7.5 tonnes)\",\n                \"vehicleTypeID\": 19,\n                \"fuelTypes\": []\n            },\n            {\n                \"vehicleTypeName\": \"HGV - Rigid (7.5 - 17 tonnes)\",\n                \"vehicleTypeID\": 20,\n                \"fuelTypes\": []\n            },\n            {\n                \"vehicleTypeName\": \"Motorbike - Average\",\n                \"vehicleTypeID\": 8,\n                \"fuelTypes\": []\n            },\n            {\n                \"vehicleTypeName\": \"Taxi - Regular\",\n                \"vehicleTypeID\": 9,\n                \"fuelTypes\": []\n            },\n            {\n                \"vehicleTypeName\": \"Van - Average (up to 3.5 tonnes)\",\n                \"vehicleTypeID\": 18,\n                \"fuelTypes\": [\n                    {\n                        \"fuelTypeName\": \"Diesel\",\n                        \"fuelTypeID\": 1\n                    },\n                    {\n                        \"fuelTypeName\": \"Petrol\",\n                        \"fuelTypeID\": 2\n                    },\n                    {\n                        \"fuelTypeName\": \"Hybrid\",\n                        \"fuelTypeID\": 3\n                    },\n                    {\n                        \"fuelTypeName\": \"LPG\",\n                        \"fuelTypeID\": 4\n                    },\n                    {\n                        \"fuelTypeName\": \"unknown\",\n                        \"fuelTypeID\": 5\n                    }\n                ]\n            },\n            {\n                \"vehicleTypeName\": \"Van - Class I (up to 1.305 tonnes)\",\n                \"vehicleTypeID\": 15,\n                \"fuelTypes\": [\n                    {\n                        \"fuelTypeName\": \"Diesel\",\n                        \"fuelTypeID\": 1\n                    },\n                    {\n                        \"fuelTypeName\": \"Petrol\",\n                        \"fuelTypeID\": 2\n                    }\n                ]\n            },\n            {\n                \"vehicleTypeName\": \"Van - Class II (1.305 to 1.74 tonnes)\",\n                \"vehicleTypeID\": 16,\n                \"fuelTypes\": [\n                    {\n                        \"fuelTypeName\": \"Diesel\",\n                        \"fuelTypeID\": 1\n                    },\n                    {\n                        \"fuelTypeName\": \"Petrol\",\n                        \"fuelTypeID\": 2\n                    }\n                ]\n            },\n            {\n                \"vehicleTypeName\": \"Van - Class III (1.74 to 3.5 tonnes)\",\n                \"vehicleTypeID\": 17,\n                \"fuelTypes\": [\n                    {\n                        \"fuelTypeName\": \"Diesel\",\n                        \"fuelTypeID\": 1\n                    },\n                    {\n                        \"fuelTypeName\": \"Petrol\",\n                        \"fuelTypeID\": 2\n                    }\n                ]\n            }\n        ]\n    },\n    {\n        \"modeName\": \"Rail\",\n        \"modeID\": 2,\n        \"vehicleTypes\": [\n            {\n                \"vehicleTypeName\": \"Rail - Freight train\",\n                \"vehicleTypeID\": 31,\n                \"fuelTypes\": []\n            },\n            {\n                \"vehicleTypeName\": \"Rail - International rail\",\n                \"vehicleTypeID\": 28,\n                \"fuelTypes\": []\n            },\n            {\n                \"vehicleTypeName\": \"Rail - Light rail and tram\",\n                \"vehicleTypeID\": 29,\n                \"fuelTypes\": []\n            },\n            {\n                \"vehicleTypeName\": \"Rail - London Underground\",\n                \"vehicleTypeID\": 30,\n                \"fuelTypes\": []\n            },\n            {\n                \"vehicleTypeName\": \"Rail - National rail\",\n                \"vehicleTypeID\": 27,\n                \"fuelTypes\": []\n            }\n        ]\n    },\n    {\n        \"modeName\": \"Air\",\n        \"modeID\": 3,\n        \"vehicleTypes\": [\n            {\n                \"vehicleTypeName\": \"Flights - Domestic (UK)\",\n                \"vehicleTypeID\": 32,\n                \"fuelTypes\": []\n            },\n            {\n                \"vehicleTypeName\": \"Flights - Long-haul (non-European)\",\n                \"vehicleTypeID\": 34,\n                \"fuelTypes\": []\n            },\n            {\n                \"vehicleTypeName\": \"Flights - Short-haul (Europe)\",\n                \"vehicleTypeID\": 33,\n                \"fuelTypes\": []\n            }\n        ]\n    },\n    {\n        \"modeName\": \"Water\",\n        \"modeID\": 4,\n        \"vehicleTypes\": [\n            {\n                \"vehicleTypeName\": \"Water - Cargo\",\n                \"vehicleTypeID\": 35,\n                \"fuelTypes\": []\n            }\n        ]\n    }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/TransportResource.java",
+    "groupTitle": "Waste",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "{cid}/projects/{pid}/waste-items/{wasteID}",
+    "title": "getWasteItem",
+    "group": "Waste",
+    "description": "<p>Get details of waste item {wasteID} which exists under project {pid} under business unit {cid}</p>",
+    "name": "getWasteItem",
+    "version": "1.0.0",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "WasteItem",
+            "optional": false,
+            "field": "results.WasteItem",
+            "description": "<p>This contains details of waste item identified by {wasteID} which exist under project {pid}.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"wasteID\": 1756110,\n    \"dateEntered\": \"16/1/2017\",\n    \"wasteCarrier\": {\n        \"carrierID\": 90153,\n        \"carrierName\": \"Sample Carrier 1\"\n    },\n    \"wasteDestination\": {\n        \"destinationID\": 90155,\n        \"destinationName\": \"Sample Destination 1\"\n    },\n    \"subcontractor\": {\n        \"subcontractorID\": 0,\n        \"subcontractorName\": \"\"\n    },\n    \"wasteTransferNote\": \"z\",\n    \"containerReference\": \"\",\n    \"skipSize\": {\n        \"description\": \"23,500 cu metre stockpile\",\n        \"skipSizeID\": 182,\n        \"volume\": 0\n    },\n    \"voidPercentage\": 40,\n    \"numberOfContainers\": 1,\n    \"overallTonnage\": 28200,\n    \"sicCode\": \"\",\n    \"projectPhase\": {\n        \"projectPhaseID\": 3,\n        \"projectPhaseName\": \"Construction\"\n    },\n    \"wasteManagementRoute\": {\n        \"wasteManagementRouteID\": 3,\n        \"wasteManagementRouteName\": \"Recovery\"\n    },\n    \"wasteManagementLocation\": {\n        \"wasteManagementLocationID\": 2,\n        \"wasteManagementLocationName\": \"Offsite\"\n    },\n    \"containerSegregated\": false,\n    \"createdByCompanyName\": \"\",\n    \"wasteTransferNoteEvidence\": \" http://api.smartwaste.co.uk/swmp/weighbridgetickets/1756110_evidence_1.pdf\",\n    \"links\": [\n        {\n            \"rel\": \"self\",\n            \"type\": \"GET\",\n            \"uri\": \"http://api.smartwaste.co.uk/9518/projects/3596878/waste-items//1756110\"\n        }\n    ],\n    \"wasteProducts\": [\n        {\n            \"wasteProductID\": 1,\n            \"description\": \"Bricks  (17 01 02)\",\n            \"ewcCode\": \"17 01 02\",\n            \"percentage\": 100\n        }\n    ],\n    \"labels\": [\n\t        {\n\t            \"labelID\": 6,\n\t            \"labelName\": \"Testing\",\n\t            \"description\": \"Testing\",\n\t            \"labelColour\": \"label-orange\"\n\t        },\t\t\t   \n\t        {\n\t            \"labelID\": 41,\n\t            \"labelName\": \"View comments from QA\",\n\t            \"description\": \"View comments from QA\",\n\t            \"labelColour\": \"label-orange\"\n\t        }\n\t    ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/WasteResource.java",
+    "groupTitle": "Waste",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "{cid}/projects/{pid}/waste-items",
+    "title": "getWasteItems",
+    "group": "Waste",
+    "description": "<p>Get the list of waste items which exists under project {pid} under business unit {cid}</p>",
+    "name": "getWasteItems",
+    "version": "1.0.0",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "WasteItem",
+            "optional": false,
+            "field": "results.WasteItems",
+            "description": "<p>This contains details of all waste items which exist under this project.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n[\n    {\n        \"wasteID\": 1756110,\n        \"dateEntered\": \"16/1/2017\",\n        \"wasteCarrier\": {\n            \"carrierID\": 90153,\n            \"carrierName\": \"Sample Carrier 1\"\n        },\n        \"wasteDestination\": {\n            \"destinationID\": 90155,\n            \"destinationName\": \"Sample Destination 1\"\n        },\n        \"subcontractor\": {\n            \"subcontractorID\": 0,\n            \"subcontractorName\": \"\"\n        },\n        \"wasteTransferNote\": \"z\",\n        \"containerReference\": \"\",\n        \"skipSize\": {\n            \"description\": \"23,500 cu metre stockpile\",\n            \"skipSizeID\": 182,\n            \"volume\": 0\n        },\n        \"voidPercentage\": 40,\n        \"numberOfContainers\": 1,\n        \"overallTonnage\": 28200,\n        \"sicCode\": \"\",\n        \"projectPhase\": {\n            \"projectPhaseID\": 3,\n            \"projectPhaseName\": \"Construction\"\n        },\n        \"wasteManagementRoute\": {\n            \"wasteManagementRouteID\": 3,\n            \"wasteManagementRouteName\": \"Recovery\"\n        },\n        \"wasteManagementLocation\": {\n            \"wasteManagementLocationID\": 2,\n            \"wasteManagementLocationName\": \"Offsite\"\n        },\n        \"containerSegregated\": false,\n        \"createdByCompanyName\": \"\",\n        \"wasteTransferNoteEvidence\": \" http://api.smartwaste.co.uk/swmp/weighbridgetickets/1756110_evidence_1.pdf\",\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"type\": \"GET\",\n                \"uri\": \"http://api.smartwaste.co.uk/9518/projects/3596878/waste-items//1756110\"\n            }\n        ],\n        \"wasteProducts\": [\n            {\n                \"wasteProductID\": 1,\n                \"description\": \"Bricks  (17 01 02)\",\n                \"ewcCode\": \"17 01 02\",\n                \"percentage\": 100\n            }\n        ],\n        \"labels\": [\n\t        {\n\t            \"labelID\": 7,\n\t            \"labelName\": \"QA\",\n\t            \"description\": \"QA\",\n\t            \"labelColour\": \"label-orange\"\n\t        },\n\t        {\n\t            \"labelID\": 5,\n\t            \"labelName\": \"incomplete\",\n\t            \"description\": \"incomplete\",\n\t            \"labelColour\": \"label-lime\"\n\t        },\n\t        {\n\t            \"labelID\": 2,\n\t            \"labelName\": \"View comments from QA\",\n\t            \"description\": \"View comments from QA\",\n\t            \"labelColour\": \"label-orange\"\n\t        }\n\t    ]\n    },\n    {\n        \"wasteID\": 1755931,\n        \"dateEntered\": \"13/10/2016\",\n        \"wasteCarrier\": {\n            \"carrierID\": 90156,\n            \"carrierName\": \"Sample Carrier 2\"\n        },\n        \"wasteDestination\": {\n            \"destinationID\": 90157,\n            \"destinationName\": \"Sample Destination 2\"\n        },\n        \"subcontractor\": {\n            \"subcontractorID\": 0,\n            \"subcontractorName\": \"\"\n        },\n        \"wasteTransferNote\": \"z\",\n        \"containerReference\": \"\",\n        \"skipSize\": {\n            \"description\": \"23,500 cu metre stockpile\",\n            \"skipSizeID\": 182,\n            \"volume\": 0\n        },\n        \"voidPercentage\": 40,\n        \"numberOfContainers\": 1,\n        \"overallTonnage\": 5405,\n        \"sicCode\": \"\",\n        \"projectPhase\": {\n            \"projectPhaseID\": 3,\n            \"projectPhaseName\": \"Construction\"\n        },\n        \"wasteManagementRoute\": {\n            \"wasteManagementRouteID\": 3,\n            \"wasteManagementRouteName\": \"Recovery\"\n        },\n        \"wasteManagementLocation\": {\n            \"wasteManagementLocationID\": 2,\n            \"wasteManagementLocationName\": \"Offsite\"\n        },\n        \"containerSegregated\": false,\n        \"createdByCompanyName\": \"\",\n        \"wasteTransferNoteEvidence\": \" http://api.smartwaste.co.uk/swmp/weighbridgetickets/1756110_evidence_2.pdf\",\n        \"links\": [\n            {\n                \"rel\": \"self\",\n                \"type\": \"GET\",\n                \"uri\": \"http://api.smartwaste.co.uk/9518/projects/3596878/waste-items//1755931\"\n            }\n        ],\n        \"wasteProducts\": [\n            {\n                \"wasteProductID\": 1,\n                \"description\": \"Bricks  (17 01 02)\",\n                \"ewcCode\": \"17 01 02\",\n                \"percentage\": 100\n            }\n        ],\n        \"labels\": [\n\t        {\n\t            \"labelID\": 6,\n\t            \"labelName\": \"Testing\",\n\t            \"description\": \"Testing\",\n\t            \"labelColour\": \"label-orange\"\n\t        },\n\t        {\n\t            \"labelID\": 44,\n\t            \"labelName\": \"incomplete\",\n\t            \"description\": \"incomplete\",\n\t            \"labelColour\": \"label-lime\"\n\t        },\n\t        {\n\t            \"labelID\": 41,\n\t            \"labelName\": \"View comments from QA\",\n\t            \"description\": \"View comments from QA\",\n\t            \"labelColour\": \"label-orange\"\n\t        }\n\t    ]\n    }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/WasteResource.java",
+    "groupTitle": "Waste",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "{cid}/projects/{pid}/waste-management-locations",
+    "title": "getWasteManagementLocations",
+    "group": "Waste",
+    "description": "<p>Get details of all waste management locations applicable to project {pid} under business unit {cid}</p>",
+    "name": "getWasteManagementLocations",
+    "version": "1.0.0",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "WasteManagementLocation",
+            "optional": false,
+            "field": "results.WasteManagementLocations",
+            "description": "<p>This contains details of waste management locations applicable to this project.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n[\n    {\n        \"wasteManagementLocationID\": 1,\n        \"wasteManagementLocationName\": \"On site\"\n    },\n    {\n        \"wasteManagementLocationID\": 2,\n        \"wasteManagementLocationName\": \"Offsite\"\n    }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/WasteResource.java",
+    "groupTitle": "Waste",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "{cid}/projects/{pid}/waste-management-routes",
+    "title": "getWasteManagementRoutes",
+    "group": "Waste",
+    "description": "<p>Get details of all waste management routes applicable to project {pid} under business unit {cid}</p>",
+    "name": "getWasteManagementRoutes",
+    "version": "1.0.0",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "WasteManagementRoute",
+            "optional": false,
+            "field": "results.WasteManagementRoutes",
+            "description": "<p>This contains details of waste management routes applicable to this project.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n[\n    {\n        \"wasteManagementRouteID\": 1,\n        \"wasteManagementRouteName\": \"Reuse\"\n    },\n    {\n        \"wasteManagementRouteID\": 2,\n        \"wasteManagementRouteName\": \"Direct recycle\"\n    },\n    {\n        \"wasteManagementRouteID\": 3,\n        \"wasteManagementRouteName\": \"Recovery\"\n    },\n    {\n        \"wasteManagementRouteID\": 4,\n        \"wasteManagementRouteName\": \"Landfilled/Disposal\"\n    },\n    {\n        \"wasteManagementRouteID\": 5,\n        \"wasteManagementRouteName\": \"Energy Recovery\"\n    }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/WasteResource.java",
+    "groupTitle": "Waste",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "{cid}/projects/{pid}/waste-product-types",
+    "title": "getWasteProductTypes",
+    "group": "Waste",
+    "description": "<p>Get details of all waste product types applicable to project {pid} under business unit {cid}</p>",
+    "name": "getWasteProductTypes",
+    "version": "1.0.0",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "WasteProductType",
+            "optional": false,
+            "field": "results.WasteProductTypes",
+            "description": "<p>This contains details of waste product types applicable to this project.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n[\n    {\n        \"wasteProductID\": 1,\n        \"description\": \"Bricks  (17 01 02)\",\n        \"ewcCode\": \"17 01 02\"\n    },\n    {\n        \"wasteProductID\": 2,\n        \"description\": \"Tiles and Ceramics  (17 01 03)\",\n        \"ewcCode\": \"17 01 03\",\n        \"subProducts\": [\n            {\n                \"wasteProductID\": 463,\n                \"description\": \"Terrazzo grindings  (17 01 03)\",\n                \"ewcCode\": \"17 01 03\"\n            }\n        ]\n    },\n    {\n        \"wasteProductID\": 3,\n        \"description\": \"Concrete  (17 01 01)\",\n        \"ewcCode\": \"17 01 01\",\n        \"subProducts\": [\n            {\n                \"wasteProductID\": 88,\n                \"description\": \"Blocks  (17 01 01)\",\n                \"ewcCode\": \"17 01 01\"\n            }\n        ]\n    },\n    {\n        \"wasteProductID\": 4,\n        \"description\": \"Inert  (17 01 07)\",\n        \"ewcCode\": \"17 01 07\",\n        \"subProducts\": [\n            {\n                \"wasteProductID\": 21,\n                \"description\": \"Aggregates  (17 01 07)\",\n                \"ewcCode\": \"17 01 07\"\n            },\n            {\n                \"wasteProductID\": 22,\n                \"description\": \"Stone  (17 05 04)\",\n                \"ewcCode\": \"17 05 04\"\n            },\n            {\n                \"wasteProductID\": 23,\n                \"description\": \"Slate  (17 01 03)\",\n                \"ewcCode\": \"17 01 03\"\n            },\n            {\n                \"wasteProductID\": 24,\n                \"description\": \"Glass  (uncontaminated) (17 02 02)\",\n                \"ewcCode\": \"17 02 02\"\n            }\n        ]\n    },\n    {\n        \"wasteProductID\": 73,\n        \"description\": \"Mixed construction and/or demolition waste (17 09 04)\",\n        \"ewcCode\": \"17 09 04\"\n    }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/WasteResource.java",
+    "groupTitle": "Waste",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "{cid}/projects/{pid}/work-packages",
+    "title": "getWorkpackages",
+    "group": "Waste",
+    "description": "<p>Get details of all work packages applicable to a project {pid} under business unit {cid}</p>",
+    "name": "getWorkpackages",
+    "version": "1.0.0",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "WorkPackage",
+            "optional": false,
+            "field": "results.WorkPackages",
+            "description": "<p>This contains details of work packages applicable to this project.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n[\n    {\n        \"description\": \"Not Specified\",\n        \"workPackageID\": 0\n    },\n    {\n        \"description\": \"Brickwork, blockwork and stonework\",\n        \"workPackageID\": 1\n    },\n    {\n        \"description\": \"Construction\",\n        \"workPackageID\": 2\n    },\n    {\n        \"description\": \"Demolition\",\n        \"workPackageID\": 3\n    },\n    {\n        \"description\": \"Drainage & Service ducts\",\n        \"workPackageID\": 4\n    },\n    {\n        \"description\": \"External and Site Works\",\n        \"workPackageID\": 5\n    },\n    {\n        \"description\": \"Fixtures and Fittings\",\n        \"workPackageID\": 6\n    },\n    {\n        \"description\": \"Frame\",\n        \"workPackageID\": 7\n    },\n    {\n        \"description\": \"Groundworks and Excavation\",\n        \"workPackageID\": 8\n    },\n    {\n        \"description\": \"Kerbs, footways and paved areas\",\n        \"workPackageID\": 9\n    },\n    {\n        \"description\": \"Office/administration\",\n        \"workPackageID\": 10\n    },\n    {\n        \"description\": \"Piling, retaining walls etc\",\n        \"workPackageID\": 11\n    },\n    {\n        \"description\": \"Remediation\",\n        \"workPackageID\": 12\n    },\n    {\n        \"description\": \"Road pavements\",\n        \"workPackageID\": 13\n    },\n    {\n        \"description\": \"Roofing\",\n        \"workPackageID\": 14\n    },\n    {\n        \"description\": \"Services\",\n        \"workPackageID\": 15\n    },\n    {\n        \"description\": \"Structural concrete\",\n        \"workPackageID\": 16\n    }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/WasteResource.java",
+    "groupTitle": "Waste",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "post",
+    "url": "{cid}/projects/{pid}/waste-items",
+    "title": "saveWasteItem",
+    "group": "Waste",
+    "description": "<p>Add waste record (WasteItem) and upload the associated Waste Transfer Note Evidence file to project {pid} under business unit {cid}</p>",
+    "name": "saveWasteItem",
+    "version": "1.1.0",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "File",
+            "optional": true,
+            "field": "file",
+            "description": "<p>The Waste Transfer Note Evidence file to be uploaded.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "WasteItem",
+            "optional": false,
+            "field": "wasteItem",
+            "description": "<p>Waste item to be added. All mandatory fields in the waste item need to be completed for the record to be successfully saved.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example for Volume projects (\"smartwasteProjectType\": \"Volume\" in the getProject call):",
+          "content": "{\n\t\"wasteID\": \"\",\n\t\"dateEntered\": \"16/1/2017\",\n\t\"wasteCarrier\": {\n\t    \"carrierID\": 90153,\n\t    \"carrierName\": \"Sample Carrier 1\"\n\t},\n\t\"wasteDestination\": {\n\t    \"destinationID\": 90155,\n\t    \"destinationName\": \"Sample Destination 1\"\n\t},\n\t\"subcontractor\": {\n\t    \"subcontractorID\": 0,\n\t    \"subcontractorName\": \"\"\n\t},\n\t\"wasteTransferNote\": \"z\",\n\t\"containerReference\": \"\",\n\t\"skipSize\": {\n\t    \"description\": \"23,500 cu metre stockpile\",\n\t    \"skipSizeID\": 182,\n\t    \"volume\": 0\n\t},\n\t\"voidPercentage\": 40,\n\t\"numberOfContainers\": 1,\n\t\"overallTonnage\": 2.0,\n\t\"sicCode\": \"\",\n\t\"projectPhase\": {\n\t    \"projectPhaseID\": 3,\n\t    \"projectPhaseName\": \"Construction\"\n\t},\n\t\"wasteManagementRoute\": {\n\t    \"wasteManagementRouteID\": 3,\n\t    \"wasteManagementRouteName\": \"Recovery\"\n\t},\n\t\"wasteManagementLocation\": {\n\t    \"wasteManagementLocationID\": 2,\n\t    \"wasteManagementLocationName\": \"Offsite\"\n\t},\n\t\"containerSegregated\": false,\n\t\"createdByCompanyName\": \"\",\n\t\"wasteTransferNoteEvidence\": \"\",\n\t\"wasteProducts\": [\n\t    {\n\t        \"wasteProductID\": 1,\n\t        \"description\": \"Bricks  (17 01 02)\",\n\t        \"ewcCode\": \"17 01 02\",\n\t        \"percentage\": 100\n\t    }\n\t].\n\t\"labels\": [\n\t    {\n\t        \"labelID\": 6,\n\t        \"labelName\": \"Testing\",\n\t        \"description\": \"Testing\",\n\t        \"labelColour\": \"label-orange\"\n\t    },\t\t\t   \n\t    {\n\t        \"labelID\": 41,\n\t        \"labelName\": \"View comments from QA\",\n\t        \"description\": \"View comments from QA\",\n\t        \"labelColour\": \"label-orange\"\n\t    }\n\t]\n}",
+          "type": "json"
+        },
+        {
+          "title": "Request-Example for Tonnage projects (\"smartwasteProjectType\": \"Tonnage\" in the getProject call):",
+          "content": "{\n\t\"wasteID\": \"\",\n\t\"dateEntered\": \"16/1/2017\",\n\t\"wasteCarrier\": {\n\t    \"carrierID\": 90153,\n\t    \"carrierName\": \"Sample Carrier 1\"\n\t},\n\t\"wasteDestination\": {\n\t    \"destinationID\": 90155,\n\t    \"destinationName\": \"Sample Destination 1\"\n\t},\n\t\"subcontractor\": {\n\t    \"subcontractorID\": 0,\n\t    \"subcontractorName\": \"\"\n\t},\n\t\"wasteTransferNote\": \"z\",\n\t\"containerReference\": \"\",\n\t\"skipSize\": {\n\t    \"description\": \"23,500 cu metre stockpile\",\n\t    \"skipSizeID\": 182,\n\t    \"volume\": 0\n\t},\n\t\"numberOfContainers\": 1,\n\t\"sicCode\": \"\",\n\t\"projectPhase\": {\n\t    \"projectPhaseID\": 3,\n\t    \"projectPhaseName\": \"Construction\"\n\t},\n\t\"wasteManagementRoute\": {\n\t    \"wasteManagementRouteID\": 3,\n\t    \"wasteManagementRouteName\": \"Recovery\"\n\t},\n\t\"wasteManagementLocation\": {\n\t    \"wasteManagementLocationID\": 2,\n\t    \"wasteManagementLocationName\": \"Offsite\"\n\t},\n\t\"containerSegregated\": false,\n\t\"createdByCompanyName\": \"\",\n\t\"wasteTransferNoteEvidence\": \"\",\n\t\"wasteProducts\": [\n\t    {\n\t        \"wasteProductID\": 1,\n\t        \"description\": \"Bricks  (17 01 02)\",\n\t        \"ewcCode\": \"17 01 02\",\n\t        \"tonnage\": 1.5\n\t    }\n\t].\n\t\"labels\": [\n\t    {\n\t        \"labelID\": 6,\n\t        \"labelName\": \"Testing\",\n\t        \"description\": \"Testing\",\n\t        \"labelColour\": \"label-orange\"\n\t    },\t\t\t   \n\t    {\n\t        \"labelID\": 41,\n\t        \"labelName\": \"View comments from QA\",\n\t        \"description\": \"View comments from QA\",\n\t        \"labelColour\": \"label-orange\"\n\t    }\n\t]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "WasteItem",
+            "optional": false,
+            "field": "wasteItem",
+            "description": "<p>If successful, the waste record saved is returned.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"wasteID\": 1756110,\n    \"dateEntered\": \"16/1/2017\",\n    \"wasteCarrier\": {\n        \"carrierID\": 90153,\n        \"carrierName\": \"Sample Carrier 1\"\n    },\n    \"wasteDestination\": {\n        \"destinationID\": 90155,\n        \"destinationName\": \"Sample Destination 1\"\n    },\n    \"subcontractor\": {\n        \"subcontractorID\": 0,\n        \"subcontractorName\": \"\"\n    },\n    \"wasteTransferNote\": \"z\",\n    \"containerReference\": \"\",\n    \"skipSize\": {\n        \"description\": \"23,500 cu metre stockpile\",\n        \"skipSizeID\": 182,\n        \"volume\": 0\n    },\n    \"voidPercentage\": 40,\n    \"numberOfContainers\": 1,\n    \"overallTonnage\": 28200,\n    \"sicCode\": \"\",\n    \"projectPhase\": {\n        \"projectPhaseID\": 3,\n        \"projectPhaseName\": \"Construction\"\n    },\n    \"wasteManagementRoute\": {\n        \"wasteManagementRouteID\": 3,\n        \"wasteManagementRouteName\": \"Recovery\"\n    },\n    \"wasteManagementLocation\": {\n        \"wasteManagementLocationID\": 2,\n        \"wasteManagementLocationName\": \"Offsite\"\n    },\n    \"containerSegregated\": false,\n    \"createdByCompanyName\": \"\",\n    \"wasteTransferNoteEvidence\": \" http://api.smartwaste.co.uk/swmp/weighbridgetickets/1756110_evidence_1.pdf\",\n    \"links\": [\n        {\n            \"rel\": \"self\",\n            \"type\": \"GET\",\n            \"uri\": \"http://api.smartwaste.co.uk/9518/projects/3596878/waste-items//1756110\"\n        }\n    ],\n    \"wasteProducts\": [\n        {\n            \"wasteProductID\": 1,\n            \"description\": \"Bricks  (17 01 02)\",\n            \"ewcCode\": \"17 01 02\",\n            \"percentage\": 100\n        }\n    ],\n     \"labels\": [\n        {\n            \"labelID\": 6,\n            \"labelName\": \"Testing\",\n            \"description\": \"Testing\",\n            \"labelColour\": \"label-orange\"\n        },\t\t\t   \n        {\n            \"labelID\": 41,\n            \"labelName\": \"View comments from QA\",\n            \"description\": \"View comments from QA\",\n            \"labelColour\": \"label-orange\"\n        }\n    ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/WasteResource.java",
+    "groupTitle": "Waste",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "put",
+    "url": "{cid}/projects/{pid}/waste-items/{wasteID}",
+    "title": "updateWasteItem",
+    "group": "Waste",
+    "description": "<p>Update waste record (WasteItem) and upload the associated Waste Transfer Note Evidence file to project {pid} under business unit {cid}</p>",
+    "name": "updateWasteItem",
+    "version": "1.3.0",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "File",
+            "optional": true,
+            "field": "file",
+            "description": "<p>The Waste Transfer Note Evidence file to be uploaded.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "WasteItem",
+            "optional": false,
+            "field": "wasteItem",
+            "description": "<p>Waste item to be updated. All mandatory fields in the waste item need to be completed for the record to be successfully updated.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "WasteID",
+            "optional": false,
+            "field": "WasteID",
+            "description": "<p>of the waste record which will be updated.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example for Volume projects (\"smartwasteProjectType\": \"Volume\" in the getProject call):",
+          "content": "{       \n\t\"wasteID\": 1756010,\n\t\"dateEntered\": \"24/9/2018\",\n\t\"wasteCarrier\": {\n\t\t\"address1\": \"\",\n\t\t\"address2\": \"\",\n\t\t\"carrierID\": 79002,\n\t\t\"carrierName\": \"Carrier 1\",\n\t\t\"county\": \"\",\n\t\t\"originCompany\": 9518,\n\t\t\"originCompanyName\": \"SMARTWaste Training Account\",\n\t\t\"postcode\": \"\",\n\t\t\"town\": \"\",\n\t\t\"wasteTransferNoteStorage\": \"\"\n\t},\n\t\"wasteDestination\": {\n\t\t\"address1\": \"\",\n\t\t\"address2\": \"\",\n\t\t\"county\": \"\",\n\t\t\"destinationID\": 37953,\n\t\t\"destinationName\": \"Destination 1\",\n\t\t\"originCompany\": 9518,\n\t\t\"originCompanyName\": \"SMARTWaste Training Account\",\n\t\t\"parentCarrierID\": 37952,\n\t\t\"postcode\": \"\",\n\t\t\"town\": \"\"\n\t},\n\t\"projectTransport\": {\n\t\t\"projectTransportID\": 52699,\n\t\t\"totalDistanceKms\": 402.34,\n\t\t\"totalDistanceMiles\": 250,\n\t\t\"modeOfTransport\": {\n\t\t\t\"modeName\": \"Rail\",\n\t\t\t\"modeID\": 2\n\t\t},\n\t\t\"vehicleType\": {\n\t\t\t\"vehicleTypeName\": \"Rail - International rail\",\n\t\t\t\"vehicleTypeID\": 28\n\t\t},\n\t\t\"fuelType\": {\n\t\t\t\"fuelTypeName\": \"\",\n\t\t\t\"fuelTypeID\": 0\n\t\t},\n\t\t\"fuelAmountInLitre\": 0\n\t},\n\t\"subcontractor\": {\n\t\t\"address1\": \"\",\n\t\t\"address2\": \"\",\n\t\t\"address3\": \"\",\n\t\t\"contactName\": \"Sample contact name\",\n\t\t\"county\": \"\",\n\t\t\"email\": \"test@bre.co.uk\",\n\t\t\"originCompany\": 9518,\n\t\t\"originCompanyName\": \"SMARTWaste Training Account\",\n\t\t\"postcode\": \"\",\n\t\t\"subcontractorID\": 29838,\n\t\t\"subcontractorName\": \"Sample subcontractor\",\n\t\t\"tel\": \"\"\n\t},\n\t\"wasteTransferNote\": \"WTN 24/9/2018\",\n\t\"containerReference\": \"\",\n\t\"skipSize\": {\n\t\t\"description\": \"26.8cu metre skip (35 cu yd)\",\n\t\t\"skipSizeID\": 24,\n\t\t\"volume\": 0\n\t},\n\t\"voidPercentage\": 0,\n\t\"numberOfContainers\": 2,\n\t\"overallTonnage\": 2.7,\n\t\"sicCode\": \"324234\",\n\t\"workPackage\": {\n\t\t\"description\": \"Groundworks & excavation\",\n\t\t\"workPackageID\": 11\n\t},\n\t\"projectPhase\": {\n\t\t\"projectPhaseID\": 5,\n\t\t\"projectPhaseName\": \"Modular\"\n\t},\n\t\"wasteManagementRoute\": {\n\t\t\"wasteManagementRouteID\": 2,\n\t\t\"wasteManagementRouteName\": \"Direct recycle\"\n\t},\n\t\"wasteManagementLocation\": {\n\t\t\"wasteManagementLocationID\": 2,\n\t\t\"wasteManagementLocationName\": \"Offsite\"\n\t},\n\t\"containerSegregated\": false,\n\t\"wasteTransferNoteEvidence\": \"evidence1.txt\",\n\t\"wasteProducts\": [\n\t\t{\n\t\t\t\"wasteProductID\": 1,\n\t\t\t\"description\": \"Bricks  (17 01 02)\",\n\t\t\t\"ewcCode\": \"17 01 02\",\n\t\t\t\"tonnage\": 1.2\n\t\t},\n\t\t{\n\t\t\t\"wasteProductID\": 3,\n\t\t\t\"description\": \"Concrete  (17 01 01)\",\n\t\t\t\"ewcCode\": \"17 01 01\",\n\t\t\t\"tonnage\": 1.5\n\t\t}\n\t]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "WasteItem",
+            "optional": false,
+            "field": "wasteItem",
+            "description": "<p>If successful, the waste record updated is returned.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n    \"wasteID\": 1756010,\n    \"dateEntered\": \"24/9/2018\",\n    \"wasteCarrier\": {\n\t\t\"address1\": \"\",\n\t\t\"address2\": \"\",\n\t\t\"carrierID\": 79002,\n\t\t\"carrierName\": \"Carrier 1\",\n\t\t\"county\": \"\",\n\t\t\"originCompany\": 9518,\n\t\t\"originCompanyName\": \"SMARTWaste Training Account\",\n\t\t\"postcode\": \"\",\n\t\t\"town\": \"\",\n\t\t\"wasteTransferNoteStorage\": \"\"\n\t},\n\t\"wasteDestination\": {\n\t\t\"address1\": \"\",\n\t\t\"address2\": \"\",\n\t\t\"county\": \"\",\n\t\t\"destinationID\": 37953,\n\t\t\"destinationName\": \"Destination 1\",\n\t\t\"originCompany\": 9518,\n\t\t\"originCompanyName\": \"SMARTWaste Training Account\",\n\t\t\"parentCarrierID\": 37952,\n\t\t\"postcode\": \"\",\n\t\t\"town\": \"\"\n\t},\n\t\"projectTransport\": {\n\t\t\"projectTransportID\": 52699,\n\t\t\"totalDistanceKms\": 402.34,\n\t\t\"totalDistanceMiles\": 250,\n\t\t\"modeOfTransport\": {\n\t\t\t\"modeName\": \"Rail\",\n\t\t\t\"modeID\": 2\n\t\t},\n\t\t\"vehicleType\": {\n\t\t\t\"vehicleTypeName\": \"Rail - International rail\",\n\t\t\t\"vehicleTypeID\": 28\n\t\t},\n\t\t\"fuelType\": {\n\t\t\t\"fuelTypeName\": \"\",\n\t\t\t\"fuelTypeID\": 0\n\t\t},\n\t\t\"fuelAmountInLitre\": 0\n\t},\n\t\"subcontractor\": {\n\t\t\"address1\": \"\",\n\t\t\"address2\": \"\",\n\t\t\"address3\": \"\",\n\t\t\"contactName\": \"Sample contact name\",\n\t\t\"county\": \"\",\n\t\t\"email\": \"test@bre.co.uk\",\n\t\t\"originCompany\": 9518,\n\t\t\"originCompanyName\": \"SMARTWaste Training Account\",\n\t\t\"postcode\": \"\",\n\t\t\"subcontractorID\": 29838,\n\t\t\"subcontractorName\": \"Sample subcontractor\",\n\t\t\"tel\": \"\"\n\t},\n    \"wasteTransferNote\": \"WTN 24/09/2018\",\n    \"containerReference\": \"\",\n    \"skipSize\": {\n        \"description\": \"26.8cu metre skip (35 cu yd)\",\n        \"skipSizeID\": 24,\n        \"volume\": 0\n    },\n    \"voidPercentage\": 0,\n    \"numberOfContainers\": 2,\n    \"overallTonnage\": 2.7,\n    \"sicCode\": \"324234\",\n    \"workPackage\": {\n        \"description\": \"Groundworks & excavation\",\n        \"workPackageID\": 11\n    },\n    \"projectPhase\": {\n        \"projectPhaseID\": 5,\n        \"projectPhaseName\": \"Modular\"\n    },\n    \"wasteManagementRoute\": {\n        \"wasteManagementRouteID\": 2,\n        \"wasteManagementRouteName\": \"Direct recycle\"\n    },\n    \"wasteManagementLocation\": {\n        \"wasteManagementLocationID\": 2,\n        \"wasteManagementLocationName\": \"Offsite\"\n    },\n    \"containerSegregated\": false,\n    \"createdByCompanyName\": \"Test Alias 1\",\n    \"wasteTransferNoteEvidence\": \"http://api.smartwaste.co.uk/v1/swmp/weighbridgetickets/1756010_evidence1.txt\",\n    \"links\": [\n        {\n            \"rel\": \"self\",\n            \"type\": \"GET\",\n            \"uri\": \"http://api.smartwaste.co.uk/v1/9518/projects/3487653/waste-items/1756010\"\n        }\n    ],\n    \"wasteProducts\": [\n        {\n            \"wasteProductID\": 1,\n            \"description\": \"Bricks  (17 01 02)\",\n            \"ewcCode\": \"17 01 02\",\n            \"tonnage\": 1.2\n        },\n        {\n            \"wasteProductID\": 3,\n            \"description\": \"Concrete  (17 01 01)\",\n            \"ewcCode\": \"17 01 01\",\n            \"tonnage\": 1.5\n        }\n    ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "C:/Users/Al-HaidaryZ/springworkspace/SmartWaste/src/bre/smartwaste/api/resource/WasteResource.java",
+    "groupTitle": "Waste",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Accept",
+            "defaultValue": "application/json",
+            "description": "<p>The format of the output, also application/xml</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "authToken",
+            "description": "<p>The token received during the authentication process needs to be sent as part of the header OR as a parameter.</p>"
+          },
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username for the SmartWaste account being used needs to be sent as part of the header OR as a parameter.</p>"
+          }
+        ]
+      }
+    }
+  }
+]

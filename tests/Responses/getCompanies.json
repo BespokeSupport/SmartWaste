@@ -1,0 +1,35 @@
+
+[
+    {
+        "address1": "11 Industrial Park",
+        "address2": "",
+        "city": "London",
+        "companyID": 17134,
+        "companyName": "London Region",
+        "companySize": "0-9 employees",
+        "companyType": "Architect",
+        "contactFirstname": "John",
+        "contactSurname": "Smith",
+        "county": "Greater London",
+        "email": "john.smith@company.co.uk",
+        "phone": "",
+        "postCode": "SE12HD",
+        "web": "www.company.co.uk/london"
+    },
+    {
+        "address1": "4 High Street",
+        "address2": "",
+        "city": "Cambridge",
+        "companyID": 17135,
+        "companyName": "South East Region",
+        "companySize": "0-9 employees",
+        "companyType": "Architect",
+        "contactFirstname": "Adam",
+        "contactSurname": "Smith",
+        "county": "Cambridgeshire",
+        "email": "adam.smith@company.co.uk",
+        "phone": "",
+        "postCode": "CB13DS",
+        "web": "www.company.co.uk/southeast"
+    }
+]

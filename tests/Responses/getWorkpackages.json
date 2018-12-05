@@ -1,0 +1,71 @@
+
+[
+    {
+        "description": "Not Specified",
+        "workPackageID": 0
+    },
+    {
+        "description": "Brickwork, blockwork and stonework",
+        "workPackageID": 1
+    },
+    {
+        "description": "Construction",
+        "workPackageID": 2
+    },
+    {
+        "description": "Demolition",
+        "workPackageID": 3
+    },
+    {
+        "description": "Drainage & Service ducts",
+        "workPackageID": 4
+    },
+    {
+        "description": "External and Site Works",
+        "workPackageID": 5
+    },
+    {
+        "description": "Fixtures and Fittings",
+        "workPackageID": 6
+    },
+    {
+        "description": "Frame",
+        "workPackageID": 7
+    },
+    {
+        "description": "Groundworks and Excavation",
+        "workPackageID": 8
+    },
+    {
+        "description": "Kerbs, footways and paved areas",
+        "workPackageID": 9
+    },
+    {
+        "description": "Office/administration",
+        "workPackageID": 10
+    },
+    {
+        "description": "Piling, retaining walls etc",
+        "workPackageID": 11
+    },
+    {
+        "description": "Remediation",
+        "workPackageID": 12
+    },
+    {
+        "description": "Road pavements",
+        "workPackageID": 13
+    },
+    {
+        "description": "Roofing",
+        "workPackageID": 14
+    },
+    {
+        "description": "Services",
+        "workPackageID": 15
+    },
+    {
+        "description": "Structural concrete",
+        "workPackageID": 16
+    }
+]

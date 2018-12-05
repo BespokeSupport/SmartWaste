@@ -1,0 +1,23 @@
+
+[
+    {
+        "wasteManagementRouteID": 1,
+        "wasteManagementRouteName": "Reuse"
+    },
+    {
+        "wasteManagementRouteID": 2,
+        "wasteManagementRouteName": "Direct recycle"
+    },
+    {
+        "wasteManagementRouteID": 3,
+        "wasteManagementRouteName": "Recovery"
+    },
+    {
+        "wasteManagementRouteID": 4,
+        "wasteManagementRouteName": "Landfilled/Disposal"
+    },
+    {
+        "wasteManagementRouteID": 5,
+        "wasteManagementRouteName": "Energy Recovery"
+    }
+]

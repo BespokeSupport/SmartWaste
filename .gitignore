@@ -1,0 +1,9 @@
+# Common IDEs
+/.idea/
+
+/*.phar
+/build
+/vendor
+/composer.lock
+/*.php
+!/console.php

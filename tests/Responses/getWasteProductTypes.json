@@ -1,0 +1,64 @@
+
+[
+    {
+        "wasteProductID": 1,
+        "description": "Bricks  (17 01 02)",
+        "ewcCode": "17 01 02"
+    },
+    {
+        "wasteProductID": 2,
+        "description": "Tiles and Ceramics  (17 01 03)",
+        "ewcCode": "17 01 03",
+        "subProducts": [
+            {
+                "wasteProductID": 463,
+                "description": "Terrazzo grindings  (17 01 03)",
+                "ewcCode": "17 01 03"
+            }
+        ]
+    },
+    {
+        "wasteProductID": 3,
+        "description": "Concrete  (17 01 01)",
+        "ewcCode": "17 01 01",
+        "subProducts": [
+            {
+                "wasteProductID": 88,
+                "description": "Blocks  (17 01 01)",
+                "ewcCode": "17 01 01"
+            }
+        ]
+    },
+    {
+        "wasteProductID": 4,
+        "description": "Inert  (17 01 07)",
+        "ewcCode": "17 01 07",
+        "subProducts": [
+            {
+                "wasteProductID": 21,
+                "description": "Aggregates  (17 01 07)",
+                "ewcCode": "17 01 07"
+            },
+            {
+                "wasteProductID": 22,
+                "description": "Stone  (17 05 04)",
+                "ewcCode": "17 05 04"
+            },
+            {
+                "wasteProductID": 23,
+                "description": "Slate  (17 01 03)",
+                "ewcCode": "17 01 03"
+            },
+            {
+                "wasteProductID": 24,
+                "description": "Glass  (uncontaminated) (17 02 02)",
+                "ewcCode": "17 02 02"
+            }
+        ]
+    },
+    {
+        "wasteProductID": 73,
+        "description": "Mixed construction and/or demolition waste (17 09 04)",
+        "ewcCode": "17 09 04"
+    }
+]
