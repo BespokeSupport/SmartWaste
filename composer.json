@@ -1,4 +1,7 @@
 {
+  "name": "bespoke-support/smartwaste",
+  "description": "BRE SmartWaste API library",
+  "license": "MIT",
   "minimum-stability": "RC",
   "autoload": {
     "psr-4": {
@@ -13,11 +16,10 @@
   "require": {
     "php": "^7.1",
     "ext-json": "*",
-    "guzzlehttp/guzzle": "@stable",
+    "guzzlehttp/guzzle": "^6",
     "symfony/console": "^4.2@RC"
   },
   "require-dev": {
-    "php": "^7.1",
     "symfony/var-exporter": "^4.2@RC"
   }
 }
